@@ -1,0 +1,33 @@
+.m-star-rule{
+    background:#613450;
+    padding-top:30px;
+}
+.m-star-rule .inner{
+    width:980px;
+    margin:0 auto;
+}
+
+.m-star-rule .inner .m{
+    font-size:0;
+    height:0;
+}
+.m-star-rule h1{
+    font:36px/38px "Microsoft Yahei";
+    height:38px;
+    overflow:hidden;
+    color:#fff;
+}
+.m-star-rule .txt-section{
+    padding:30px 0;
+}
+.m-star-rule .txt-section h2{
+    font:18px/20px "Microsoft Yahei";
+    color:#f5dd89;
+    padding-bottom:10px;
+    border-bottom:solid 1px #774062;
+    margin-bottom:10px;
+}
+.m-star-rule .txt-section p{
+   font:14px/24px "Microsoft Yahei";
+    color:#ccc;
+}

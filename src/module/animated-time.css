@@ -1,0 +1,20 @@
+.animated-2{
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.animated-3{
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+    -webkit-animation-iteration-count:infinite ;
+    animation-iteration-count:infinite ;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+

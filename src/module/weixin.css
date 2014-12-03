@@ -1,0 +1,137 @@
+.m-star-weixin{
+    background:#613450;
+    padding:40px 0 44px 0;
+}
+.m-star-weixin .inner{
+    width:980px; 
+    margin:0 auto;
+}
+
+.m-star-weixin .panel-wrap{
+    width:980px;
+    overflow:hidden;
+}
+ .m-star-weixin .panel{
+    width:982px;
+}
+.m-star-weixin .panel li{
+    float:left;
+    width:490px;
+    display:inline-block;  
+    border-right: 1px solid #774062;
+}
+.m-star-weixin .panel li.panel-right{
+    padding-left:34px;
+    width:456px;
+}
+.m-star-weixin .title-section{
+    
+}
+
+.m-star-weixin .title-section .city-name{
+    font-size:75px;
+    background:#f5dd89;     
+    color:#4e4056;
+    width:70px;
+    height:134px;
+    overflow:hidden;
+    line-height:75px;
+   
+    float:left;
+    display:inline-block;
+    font-family:"Microsoft Yahei";
+}
+.m-star-weixin .title-section .city-name span{
+    position:relative;
+    top: -7px;
+    left: -1.5px;
+}
+.m-star-weixin .title-section .worlds{
+    float:left;
+    display:inline-block;
+    margin-left:35px;
+}
+
+.m-star-weixin .title-section .worlds p{
+    font:36px/40px "Microsoft Yahei";
+    color:#f5dd89;
+}
+
+.m-star-weixin .title-section .city-pinyin{
+    font-size:16px;
+    height:30px;
+    line-height:30px;
+    color:#ded7db;
+}
+.m-star-weixin .title-section .date{
+    font-size:24px;
+    line-height:26px;
+    height:26px;
+    overflow:hidden;
+    color:#ded7db;
+}
+.m-star-weixin .pic-section{
+    position:relative;
+    width:450px;
+    margin-top:35px;
+}
+.m-star-weixin .pic-section img{
+    width:450px;
+    height:300px;
+}
+.m-star-weixin .pic-section .label{
+    display:inline-block;
+    width:79px;
+    height:96px;
+    position:absolute;
+    top:-15px;
+    right:25px;
+    background:url(http://qunarzz.com/images/label.png);
+}
+.m-star-weixin .info-section{
+    width:450px;
+    margin-top:35px;
+}
+.m-star-weixin .info-txt{
+    width:270px;
+    float:left;
+    display:inline-block;
+}
+.m-star-weixin .info-section .name{
+   color:#fff; 
+   font:24px/26px "Mircrosoft Yahei";
+    
+}
+.m-star-weixin .info-section .desc{
+   color:#ccc; 
+   font:16px/24px "Mircrosoft Yahei";
+   padding-top:20px;
+}
+
+.m-star-weixin .info-section .price{
+   color:#f5dd89; 
+   margin-top:38px;
+   font:24px/26px "Mircrosoft Yahei";
+}
+
+.m-star-weixin .info-section .price{
+    font-family:Arial !important;
+}
+.m-star-weixin .info-section .ewm-pic{
+    float:right;
+}
+
+.m-star-weixin .info-section .ewm-pic img{
+    width:140px;
+    height:140px;
+}
+
+.m-star-weixin .info-section .ewm-pic p{
+   color:#fefefe; 
+    height:16px;
+    overflow:hidden;
+    margin-top:20px;
+   font:14px/16px "Mircrosoft Yahei";
+}
+
+

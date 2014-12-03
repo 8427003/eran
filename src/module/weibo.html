@@ -1,0 +1,82 @@
+<!--新浪微博互动-->
+<div class="m-star-weibo">
+    <div class="inner_weibo clearfix">
+    <div class=" weibo_input fl">
+        <p class="weibo_input_title">
+            <em><span class="title_weibo"></span></em>
+        </p>
+        <div class="ta_div">
+            <textarea id="js-weibo-content">#去哪儿都有中国梦#http://hotelzt.qunar.com/2014chinesedream/</textarea>
+        </div>
+        <p class="btn_p clrfix">
+            <span class="weibo_words fl"><span id="js-left-words">53/140</span><span class="words_tips"></span></span>
+            <span class="fr clrfix"><a class="weibo_btn" target="_blank">转发新浪微博</a></span>
+        </p>
+    </div>
+    <div class=" weibo_show fr">
+        <p class="weibo_show_title">
+            <img src="http://source.qunar.com/zhuanti/20141028/sina_weibo.png" data-bd-imgshare-binded="1">
+        </p>
+        <div class="weibo_show_body">
+            <iframe width="450" height="140" frameborder="0" scrolling="no" src="http://widget.weibo.com/livestream/listlive.php?language=zh_cn&amp;width=450&amp;height=140&amp;uid=1884915007&amp;skin=1&amp;refer=1&amp;appkey=&amp;pic=0&amp;titlebar=0&amp;border=0&amp;publish=0&amp;atalk=1&amp;recomm=0&amp;at=0&amp;atopic=%E5%8E%BB%E5%93%AA%E5%84%BF%E9%83%BD%E6%9C%89%E4%B8%AD%E5%9B%BD%E6%A2%A6&amp;dpc=1"></iframe>
+
+        </div>
+    </div>
+</div>
+</div>
+<script src="http://qunarzz.com/jquery/prd/jquery-1.7.2.min.js"></script>
+<script>
+    window.onload = function(){
+         var isIE=!!window.ActiveXObject;
+			var isIE6=isIE&&!window.XMLHttpRequest;
+        $("#js-weibo-content").on("keyup",function(){
+				var _self=$(this);
+				var txt=_self.val().length;
+				if(isIE){
+					var max=parseInt(_self.attr("maxlength"),10);
+					if(max>0){ 
+						if(_self.val().length>max){ //textarea的文本长度大于maxlength 
+							_self.val(_self.val().substr(0,max)); //截断textarea的文本重新赋值 
+						} 
+					} 
+				}
+				if(txt<141){
+					$("#js-left-words").removeClass("hide")
+					$("#js-left-words").html(txt.toString()+"/140");
+					$(".weibo_btn").removeClass("disabled");
+					$(".words_tips").addClass("hide");
+				}
+				else{
+					var tips="已超过<em class='alarm'>"+(txt-140)+"</em>个字";
+					$(".words_tips").html(tips);
+					$(".words_tips").removeClass("hide");
+					$("#js-left-words").addClass("hide");
+					$(".weibo_btn").addClass("disabled");	
+				}
+			});
+			var userInput="#去哪儿都有中国梦#http://hotelzt.qunar.com/2014chinesedream/";//用户输入内容
+			$("#js-weibo-content").bind("input propertychange",function(){
+				var exp=/^#去哪儿都有中国梦#http:\/\/hotelzt.qunar.com\/2014chinesedream\//;
+				var val=$(this).val();
+				if(!exp.test(val)){
+					$(this).val(userInput);
+				}
+				else{
+					userInput=val;
+				}
+			})
+			//分享到微博
+			$(".weibo_btn").bind("click",function(e){
+				var _self=$(this);
+				var txt=encodeURIComponent($("#js-weibo-content").val());
+				if($("#js-weibo-content").val().length>140){
+					e.preventDefault();
+					_self.attr("href","");
+					return;
+				}
+				var href="http://v.t.sina.com.cn/share/share.php?title="+txt;
+				_self.attr("href",href);
+			});
+    }
+</script>
+<!--/ 新浪微博互动-->

@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 
-gulp.task('default', function() {
+gulp.task('default',['minify-css','fileinclude'],function() {
     console.log('default');
 });
 
@@ -20,9 +20,9 @@ gulp.task('browserify', function() {
 
 var minifyCSS = require('gulp-minify-css');
 gulp.task('minify-css', function() {
-    gulp.src('./src/export.css')
+    gulp.src('./src/index.css')
         .pipe(minifyCSS({}))
-        .pipe(gulp.dest('./export'))
+        .pipe(gulp.dest('./dist'))
 });
 
 // run a command in a shell
@@ -38,12 +38,12 @@ gulp.task('jekyll', function(cb) {
 
 var fileinclude = require('gulp-file-include');
 gulp.task('fileinclude', function() {
-    gulp.src(['index.html'])
+    gulp.src(['./src/index.html'])
         .pipe(fileinclude({
             prefix: '@@',
             basepath: '@file'
         }))
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest('./dist'));
 });
 
 var watcher = gulp.watch(['src/**'], ['default']);

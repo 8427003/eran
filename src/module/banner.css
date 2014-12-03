@@ -1,0 +1,93 @@
+.m-star-banner{
+    
+}
+.m-star-banner .inner-bg{
+    width:100%;
+    height:680px;
+    background:url('http://qunarzz.com/images/banner-2.jpg') no-repeat center center;
+}
+.m-star-banner .animate-wrap{
+    position:relative;
+    height:100%;
+    width:980px;
+    margin:0 auto;
+}
+.m-star-banner .animate-wrap .girl{
+    position:absolute;
+    left:0;
+    bottom:0;
+}
+.m-star-banner .animate-wrap .girl-top{
+    width:512px;
+    height:386px;
+    background:url(http://qunarzz.com/images/ly-top.png) no-repeat;
+}
+
+.m-star-banner .animate-wrap .girl-bottom{
+    width:512px;
+    height:385px;
+    background:url(http://qunarzz.com/images/ly-bottom.png) no-repeat;
+}
+.m-star-banner .animate-wrap .man{
+    position:absolute;
+    right:0;
+    bottom:0;
+}
+.m-star-banner .animate-wrap .man-top{
+    width:352px;
+    height:311px;
+    background:url('http://qunarzz.com/images/tdw-top.png');
+}
+.m-star-banner .animate-wrap .man-bottom{
+    width:352px;
+    height:310px;
+    background:url('http://qunarzz.com/images/tdw-bottom.png');
+}
+.m-star-banner .animate-wrap .big-txt{
+    position:relative;
+    top:50px;
+}
+
+.m-star-banner .animate-wrap .big-txt p{
+    text-align:center;
+    font-size:92px;
+    color:#f5dd89;
+    font-family:'Microsoft Yahei';
+}
+.m-star-banner .animate-wrap .small-txt{
+    position:relative;
+    top:65px;
+}
+.m-star-banner .animate-wrap .small-txt p{
+    font-family:'Microsoft Yahei';
+    font-size:18px;
+    color:#f5dd89; 
+    text-align:center;
+    line-height:24px;
+}
+.m-star-banner .animate-wrap .link{
+    position:relative;
+    width:200px;
+    margin:0 auto;
+    text-align:center;
+    top:80px;
+}
+.m-star-banner .animate-wrap .link a{
+    color:#004698;
+    text-decoration:underline;
+    font-size:14px;
+}
+
+.m-star-banner .animate-wrap .link a:hover{
+    color:#ff4500;
+}
+.m-star-banner .animate-wrap .logo{
+    position:relative;
+    width:149px;
+    height:57px;
+    top:95px;
+    margin: auto;
+    background:url(http://qunarzz.com/images/logo.png) no-repeat;
+}
+
+

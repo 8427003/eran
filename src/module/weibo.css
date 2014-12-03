@@ -1,0 +1,29 @@
+.m-star-weibo{
+    height:268px;
+    padding-top:52px;
+    background:url(http://qunarzz.com/images/weibo-bg.png) repeat-x;
+}
+.inner_weibo .weibo_input .btn_p .weibo_btn,.inner_weibo .weibo_input .btn_p .weibo_btn:hover,.inner_weibo .weibo_input .btn_p .weibo_btn:visited{
+    cursor:pointer;
+    color:#fff;
+}
+.fl {
+	float:left;
+	_display:inline
+}
+.fr {
+	float:right;
+	_display:inline
+}
+.inner_weibo{	padding:15px;background:#dbdde2;margin-top:30px; width:950px; margin:0 auto;}
+.inner_weibo .weibo_input,.inner_weibo .weibo_show{	width:450px;border:2px solid #c6c7cb;padding:10px;background:#fff;height:175px;}
+		.inner_weibo .weibo_input .weibo_input_title,.inner_media .inner_media_title{color:#bc001c;font-size:19px;border-left:5px solid #0092ff;padding-left:15px;margin:0 0 5px -10px;}
+		.inner_weibo .weibo_input .weibo_input_title .title_weibo{ display: inline-block;*display:inline;*zoom:1;background:url('http://source.qunar.com/zhuanti/20141028/title.png') no-repeat;width: 150px;height: 19px;}
+		.inner_weibo .weibo_input textarea{width:435px;height:100px;padding:5px;border:1px solid #c6c7cb;color: #818181;word-break:break-all;word-wrap:break-word;font-size:13px;}
+		.inner_weibo .weibo_input .ta_div{position: relative;color: #818181;}
+		.inner_weibo .weibo_input .btn_p{margin-top:5px;}
+		.inner_weibo .weibo_input .weibo_words{font-weight:bold;}
+		.inner_weibo .weibo_input .alarm{color: #f00;font-size: 14px;}
+		.inner_weibo .weibo_input .btn_p .weibo_btn{	float:right;height:22px;font:bold 12px/22px "\5B8B\4F53";color:#fff;padding:3px 10px 3px 33px;background:#f44242 url('http://source.qunar.com/zhuanti/20141028/sina_weibo_logo.png') no-repeat 5px center;}
+		.inner_weibo .weibo_show .weibo_show_body{overflow:hidden;height:136px;}
+		.inner_weibo .weibo_show .weibo_show_title{border-bottom:1px solid #c6c7cb}
