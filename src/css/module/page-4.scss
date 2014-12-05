@@ -1,0 +1,42 @@
+@import '../lib/base-sass.scss';
+.m-page-4{
+    height:100%;
+    width:100%;
+    background:#613450;
+    position:relative;
+}
+
+.m-page-4 .inner{
+    height:100%;
+    position:relative;
+    max-width:540px;
+    margin:0 auto;
+}
+.m-page-4 .title{
+    height:pxToRem(44px);
+    line-height:pxToRem(44px);
+    font:#{pxToRem(18px)}/ #{pxToRem(44px)} "Microsoft Yahei";
+    color:#f5dd89;
+    background:#4d243c;
+    text-align:center;
+}
+
+.m-page-4 .desc-wrap {
+    padding:pxToRem(23px) pxToRem(20px) pxToRem(43px);
+}
+.m-page-4 .desc-wrap p{
+    color:#ccc;
+    font:#{pxToRem(12px)/#{pxToRem(22px)} "Microsoft Yahei";
+}
+
+.m-page-4 .adv{
+    font-size:0;
+    width:pxToRem(320px);
+    height:pxToRem(160px);
+    bottom:0;
+    position:absolute;
+}
+.m-page-4 .adv img{
+    width:100%;
+    height:100%;
+}

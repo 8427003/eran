@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 
-gulp.task('default', function() {
-    console.log('default');
+gulp.task('default', ['fileinclude', 'browserify', 'sass-min'], function() {
+    console.log('default----------------done');
 });
 
 var concat = require('gulp-concat');
@@ -13,16 +13,18 @@ gulp.task('concat', function() {
 
 var browserify = require('gulp-browserify');
 gulp.task('browserify', function() {
-    gulp.src('./src/export.js')
+    gulp.src('./src/js/index.js')
         .pipe(browserify())
-        .pipe(gulp.dest('./export'))
+        .pipe(gulp.dest('./dist'))
 });
 
 var minifyCSS = require('gulp-minify-css');
 gulp.task('minify-css', function() {
-    gulp.src('./src/export.css')
-        .pipe(minifyCSS({}))
-        .pipe(gulp.dest('./export'))
+    gulp.src('./src/css/index.css')
+        .pipe(minifyCSS({
+            keepBreaks: true
+        }))
+        .pipe(gulp.dest('./dist'))
 });
 
 // run a command in a shell
@@ -38,12 +40,23 @@ gulp.task('jekyll', function(cb) {
 
 var fileinclude = require('gulp-file-include');
 gulp.task('fileinclude', function() {
-    gulp.src(['index.html'])
+    gulp.src(['./src/html/index.html'])
         .pipe(fileinclude({
             prefix: '@@',
             basepath: '@file'
         }))
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest('./dist'));
+});
+
+
+var sass = require('gulp-sass');
+gulp.task('sass-min', function() {
+    gulp.src('./src/css/index.scss')
+        .pipe(sass())
+        .pipe(minifyCSS({
+            //keepBreaks: true
+        }))
+        .pipe(gulp.dest('./dist'));
 });
 
 var watcher = gulp.watch(['src/**'], ['default']);

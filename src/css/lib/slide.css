@@ -1,0 +1,19 @@
+html,body{
+    height:100%;
+    width:100%;
+    overflow:hidden;
+} 
+
+.g-slide-view{
+    height:100%;
+    width:100%;
+}
+
+.g-slide-view .page-wrap{
+    height:100%;
+    width:100%;
+}
+.g-slide-view .page{
+    height:100%;
+    background:red;
+}

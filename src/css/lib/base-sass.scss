@@ -1,0 +1,16 @@
+$browser-default-font-size:16px !default;
+
+$browser-default-font-size-h480:16px !default;
+
+$browser-default-font-size-h568:18px !default;
+
+$browser-default-font-size-h375:20px !default;
+
+html{
+    font-size:$browser-default-font-size;
+}
+
+@function pxToRem($px){
+    @return $px / $browser-default-font-size * 1rem;
+}
+
