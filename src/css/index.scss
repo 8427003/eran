@@ -1,15 +1,17 @@
-@import "./lib/reset.css";
+@import "./lib/reset.scss";
 
-@import "./lib/animated.css";
+@import "./lib/animated.scss";
 
-@import "./lib/clearfix.css";
+@import "./lib/clearfix.scss";
 
-@import "./lib/slide.css";
+@import "./lib/slide.scss";
 
 @import "./module/page-1.scss";
 
-@import "./module/page-2-3.scss";
+@import "./module/page-2.scss";
+
+@import "./module/page-3.scss";
 
 @import "./module/page-4.scss";
 
-
+@import "./module/page-5.scss";

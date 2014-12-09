@@ -12,13 +12,30 @@ LoadSources.prototype.init = function() {
         (function(_this, i) {
             var sourceUrl = _this.sources[i];
             _callbackParams['sourceUrl'] = sourceUrl;
-            var req = new Image();
+            var req =  null;
+
+            if(sourceUrl.indexOf('.mp3')>0){
+                req = new Audio();
+            }else{
+                req = new Image();
+            }
             req.onload = function() {
                 _callbackParams['loaded'] = i + 1;
                 if (_this.progress && typeof _this.progress === 'function') {
                     setTimeout(_this.progress, 0, _callbackParams);
                     if ((i + 1) === _callbackParams.total && _this.endload && typeof _this.endload === 'function') {
-                        sertTimeout(_this.endload, 0, _callbackParams);
+                        _this.hasEnd = true;
+                        setTimeout(_this.endload, 0, _callbackParams);
+                    }
+                }
+            }
+            req.onerror = function() {
+                _callbackParams['loaded'] = i + 1;
+                if (_this.progress && typeof _this.progress === 'function') {
+                    setTimeout(_this.progress, 0, _callbackParams);
+                    if ((i + 1) === _callbackParams.total && _this.endload && typeof _this.endload === 'function') {
+                        _this.hasEnd = true;
+                        setTimeout(_this.endload, 0, _callbackParams);
                     }
                 }
             }

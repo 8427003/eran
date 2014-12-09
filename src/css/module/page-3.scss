@@ -1,0 +1,124 @@
+@import '../lib/base-sass.scss';
+.m-page-3{
+    width:100%;
+    height:100%;
+}
+
+.m-page-3 .inner{
+    height:100%;
+    max-width:540px;
+    background:grey;
+    position:relative;
+    overflow:hidden;
+    margin:0 auto;
+}
+.m-page-3 .inner .bg{
+    width:100%;
+    font-size: 0;
+    height:100%;
+}
+
+.m-page-3 .inner .content{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:pxToRem(10px);
+}
+
+.m-page-3 img{
+    width:100%;
+    height:100%;
+}
+.m-page-3 .finger-wrap{
+    width: 100%;
+    position: relative;
+    top:50%;
+    margin-top:pxToRem(-100px);
+    text-align: center;
+}
+.m-page-3 .finger-wrap .fg-bg{
+    height: pxToRem(180px);
+}
+
+.m-page-3 .finger-wrap .fg-bg img{
+    width:pxToRem(208px); 
+    height:100%;
+    left:pxToRem(13px);
+    position: relative;
+}
+.m-page-3 .finger-wrap .fg{
+    position: absolute;
+    top:pxToRem(52px);
+    width: 100%;
+    text-align: center;
+}
+.m-page-3 .finger-wrap .fg img{
+    height: pxToRem(97px);
+    width: pxToRem(72.5px);
+}
+.m-page-3 .txt{
+    position: absolute;
+    bottom:pxToRem(50px);
+    width: 100%;
+}
+.m-page-3 .txt-small{
+    text-align: center;
+    font:#{pxToRem(15px)}/#{pxToRem(15px)} "Microsoft Yahei";
+    color: #fff;
+}
+.m-page-3 .txt-big{
+    text-align: center;
+    margin-top: pxToRem(13.5px);
+    color: #fff;
+    font:#{pxToRem(18px)}/#{pxToRem(18px)} "Microsoft Yahei";
+}
+
+@keyframes zd{
+    0%{
+         transform:rotate(0);
+    }
+     50%{
+        transform:rotate(11deg);
+    }
+    100%{
+        transform:rotate(0);
+    }
+}
+.zd{
+    animation:zd 3s 1s infinite both;
+}
+
+@keyframes zdout{
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    transform: scale3d(3, 3, 3) rotate(100deg);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+   
+.zding{
+    transform:rotate(11deg);
+}
+.zdout{
+    animation:zdout 3s both;
+    transform-origin:center;
+}
+@keyframes rotate-3{
+  0% {
+  }
+
+  100% {
+    transform:rotate(360deg);
+  }
+}
+   
+.rotate-3{
+    animation:rotate-3 1s both;
+}

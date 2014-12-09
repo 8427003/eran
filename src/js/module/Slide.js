@@ -94,7 +94,7 @@ Slide.prototype = {
         return this._curIndexOfPage > 0 ? true : false;
     },
     hasNextPage: function() {
-        return this._curIndexOfPage < this._pageCount - 1 ? true : false;
+        return this.getCurIndexOfPage() < this._getPageCount() - 1 ? true : false;
     },
     pageMoveTo: function(subY,callback) {
         var subY = subY || 0;

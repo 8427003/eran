@@ -2,33 +2,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>去哪儿团，价格低到让你不好意思！</title>
+<title>来“去哪儿网”开房，佟大为帮您CheckIn</title>
+<meta name="description" content="呵呵呵">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 <meta content="yes" name="apple-mobile-web-app-capable" />
 <meta content="telephone=no" name="format-detection" />
-<link rel="stylesheet" type="text/css" href="index.css">
+@@include ('./style/style.html')	
 </head>
 <body>
 	<div class="g-slide-view">
+
 		<div class="page-wrap">
 			<div class="page">
 				@@include ('./module/page-1.html')
 			</div>
-
-			<div class="page">
+			<div class="page" data-slide="true" data-page="m-page-2">
 				@@include ('./module/page-2.html')
 			</div>
-
-			<div class="page">
+			<div class="page" data-slide="true" data-page="m-page-3">
 				@@include ('./module/page-3.html')
             </div>
 
-			<div class="page">
+			<div class="page" data-slide="true" data-page="m-page-4">
 				@@include ('./module/page-4.html')
             </div>
-		</div>
+            <div class="page" data-slide="true" data-page="m-page-5">
+				@@include ('./module/page-5.html')
+            </div>
 		</div>
 	</div>
-    <script src="index.js"></script>
+	@@include ('./script/script.html')	
 </body>
 </html>

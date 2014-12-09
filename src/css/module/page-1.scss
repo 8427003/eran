@@ -1,87 +1,38 @@
 @import '../lib/base-sass.scss';
 .m-page-1{
+    background:#fff;
     height:100%;
-    background:#5e94cc;
-    position:relative;
 }
 
 .m-page-1 .inner{
     position:relative;
     height:100%;
-   max-width:540px; 
-    background:-webkit-linear-gradient(top,#5491CF,#5791cc);
+    max-width:540px; 
+    box-sizing:border-box;
     margin:0 auto;
+    padding-top:1px;
+    overflow:hidden;
 }
-.m-page-1 .bg-pic{
-    width:pxToRem(320px);
-    font-size:0;
+
+.m-page-1 .inner .bg{
     position:absolute;
-    bottom:0;
+    top:0;
+}
+.m-page-1 .loading{
+    position:relative;
+    top:50%;
+    width:48px;
+    margin:-50px auto 0;
+}
+.m-page-1 .loading .pic{
+    width:48px;
+    height:36px;  
+    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141209/loading.gif) no-repeat;
+    -webkit-background-size:48px 36px;
 }
 
-.m-page-1 .bg-pic img{
-    width:100%;
-    height:pxToRem(313px);
-}
-
-.m-page-1 .txt{
-   position:absolute; 
-   width:pxToRem(320px);
-   /**bottom:pxToRem(313px);**/
-    
-   top:pxToRem(10px);
-}
-@media screen and (max-height:480px){
-    
-    .m-page-1 .txt{
-        top:pxToRem(5px);
-    }
-}
-.m-page-1 .txt-big{
-    font-size:pxToRem(30px);
-    line-height:pxToRem(36px);
-    color:#f5dd89;
+.m-page-1 .loading p{
+    margin-top:10px;
     text-align:center;
-}
-.m-page-1 .txt-middle{
-    font-size:pxToRem(12px);
-    color:#f5dd89;
-    line-height:pxToRem(15px);
-    text-align:center;
-}
-.m-page-1 .txt-small{
-    text-align:center;
-}
-.m-page-1 .txt-small a{
-    font-size:pxToRem(12px);
-    line-height:pxToRem(15px);
-    color:#004699;
-    text-decoration:none;
-}
-.m-page-1 .mt5{
-    margin-top:pxToRem(4.5px);
-}
-
-.m-page-1 .logo{
-    margin-top:pxToRem(5px);
-    text-align:center;
-}
-
-.m-page-1 .logo img{
-    width:pxToRem(74.5px);
-    height:pxToRem(28.5px);
-}
-.g-arrow{
-    padding:0;
-    border:0;
-    display:inline-block;
-    position:absolute;
-    bottom:pxToRem(5px);
-    left:pxToRem(148px); 
-    width:pxToRem(25px);
-    height:pxToRem(25px);
-    
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141203/arrow-2.png) no-repeat;
-    -webkit-background-size:pxToRem(24px) pxToRem(24px);
-    background-size:pxToRem(24px) pxToRem(24px);
+    color:#ccc;
 }

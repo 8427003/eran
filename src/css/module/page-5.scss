@@ -1,0 +1,98 @@
+@import '../lib/base-sass.scss';
+.m-page-5{
+    width:100%;
+    height:100%;
+}
+
+.m-page-5 .inner{
+    height:100%;
+    max-width:540px;
+    background:grey;
+    position:relative;
+    overflow:hidden;
+    margin:0 auto;
+}
+.m-page-5 .inner .bg{
+    width:100%;
+    height:100%;
+}
+
+.m-page-5 .inner .bg img{
+    width:100%;
+    height:100%;
+}
+
+.m-page-5 .inner .content{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+}
+.m-page-5 .top{
+    position:absolute;
+    top:0;
+    width:100%;
+    text-align:right;
+}
+
+.m-page-5 .top img{
+    width:pxToRem(88px);
+    height:pxToRem(48.5px);
+}
+
+.m-page-5 .middle{
+    position:relative;
+    top:50%;
+    margin-top:pxToRem(-100px);
+}
+
+.m-page-5 .middle .date{
+    text-align:center;
+    font:#{pxToRem(30px)}/#{pxToRem(30px)} "Microsoft Yahei";
+}
+.m-page-5 .middle .pic{
+    text-align:center;
+}
+.m-page-5 .middle .pic img{
+    width:pxToRem(81.5px);
+    height:pxToRem(45.5px);
+}
+
+.m-page-5 .middle .txt{
+    text-align:center;
+    font:#{pxToRem(18px)}/#{pxToRem(25px)} "Microsoft Yahei";
+}
+
+.m-page-5 .middle .btn-wrap{
+    text-align:center;
+}
+
+.m-page-5 .middle .btn-wrap .btn{
+    border:0;
+    background:#333;
+    width:pxToRem(172px);
+    height:pxToRem(44px);
+    color:#fff;
+    font:#{pxToRem(18px)}/#{pxToRem(44px)} "Microsoft Yahei";
+    margin-top:pxToRem(23px);
+}
+
+.m-page-5 .bottom{
+   position:absolute; 
+    bottom:0;
+    width:100%;
+}
+.m-page-5 .bottom .btn-wrap{
+    text-align:center;
+    margin-bottom:pxToRem(11.5px);
+}
+
+.m-page-5 .bottom .btn-wrap .btn{
+    border:0;
+    background:#aa915e;
+    width:pxToRem(85px);
+    height:pxToRem(28px);
+    color:#fff;
+    font:#{pxToRem(12px)}/#{pxToRem(28px)} "Microsoft Yahei";
+    margin-top:pxToRem(23px);
+}
