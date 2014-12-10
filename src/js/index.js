@@ -36,7 +36,7 @@ $(function() {
                 'http://hanyx.sinaapp.com/test.mp3'
 
             ];
-           **/
+            **/
             sources = [
                 'http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141209/label.png',
                 'http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141209/label-cur.png',
@@ -113,7 +113,7 @@ $(function() {
                 $('.page-wrap').animate({
                     translate3d: '0,-' + offsetY + 'px,0'
                 }, function() {
-
+                    $('.page-wrap .page').eq(1).attr('data-iscur', 'true');
                 });
             }
         },
@@ -138,6 +138,7 @@ $(function() {
 
                 var curPage = $('.page-wrap .page').eq(0);
                 curPage.remove();
+                $('.page-wrap .page').eq(1).attr('data-iscur', 'true');
             }, 1500);
         })
         .on('touchmove', function(e) {
@@ -212,12 +213,6 @@ $(function() {
 
             $('.m-page-4 .mask-share').addClass('g-none');
 
-            var offsetY = $(window).height();
-            $('.page-wrap').animate({
-                translate3d: '0,-' + offsetY * 2 + 'px,0'
-            }, function() {
-
-            });
 
         }, 5000);
     });
@@ -232,12 +227,13 @@ $(function() {
 });
 
 
-
-
 (function() {
     $(window).on('resize', resizeHandler());
+    var initHeight = $(window).height();
+    var initOffset = undefined;
 
     function resizeHandler() {
+
         var timer,
             doc = $('html'),
             win = $(window),
@@ -259,8 +255,8 @@ $(function() {
     setTimeout(resizeHandler(), 0);
 
     var autoPlay = 1;
-    var ua = navigator.userAgent.toLowerCase(); 
-    if(ua.indexOf('android') > 0){
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf('android') > 0) {
         autoPlay = 0;
     }
     $('.btn-audio').on('click', function() {
@@ -273,7 +269,7 @@ $(function() {
         if (autoPlay == '1') {
             aud[0].pause();
             autoPlay = 0;
-        }else if(autoPlay == '0'){
+        } else if (autoPlay == '0') {
             aud[0].play()
             autoPlay = 1;
         }

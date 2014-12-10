@@ -2,8 +2,8 @@ var $ = require('../lib/zepto.js');
 
 
 function WXShare(setting) {
-  this.setting = setting;
-  this.init();
+    this.setting = setting;
+    this.init();
 }
 
 WXShare.prototype = {
@@ -28,9 +28,19 @@ WXShare.prototype = {
                 "img_height": _this.img_height, //图片高度 
                 "link": _this.link, //源链接地址
                 "title": _this.title,
-                "desc":''
+                "desc": ''
             }, function(res) {
                 /*** 回调函数，最好设置为空 ***/
+                var curPage = $('.page-wrap .page').eq(1);
+               var isStateOk = $('.m-page-4 .select .state').hasClass('s-3'); 
+                if (curPage.attr('data-iscur') == 'true' && curPage.attr('data-slide') == 'true' && curPage.attr('data-page') == 'm-page-4' && isStateOk) {
+                    var offsetY = $(window).height();
+                    $('.page-wrap').animate({
+                        translate3d: '0,-' + offsetY * 2 + 'px,0'
+                    }, function() {
+                        $('.page-wrap .page').eq(1).attr('data-iscur','');
+                    });
+                }
             });
         });
         // 发送给好友
@@ -42,9 +52,18 @@ WXShare.prototype = {
                 "img_height": _this.img_height, //图片高度 
                 "link": _this.link, //源链接地址
                 "title": _this.title,
-                "desc":_this.desc
+                "desc": _this.desc
             }, function(res) {
-                //_report('send_msg', res.err_msg);
+                var curPage = $('.page-wrap .page').eq(1);
+               var isStateOk = $('.m-page-4 .select .state').hasClass('s-3'); 
+                if (curPage.attr('data-iscur') == 'true' && curPage.attr('data-slide') == 'true' && curPage.attr('data-page') == 'm-page-4' && isStateOk) {
+                    var offsetY = $(window).height();
+                    $('.page-wrap').animate({
+                        translate3d: '0,-' + offsetY * 2 + 'px,0'
+                    }, function() {
+                         $('.page-wrap .page').eq(1).attr('data-iscur','');
+                    });
+                }
             })
         });
     }
