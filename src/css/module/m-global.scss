@@ -1,0 +1,36 @@
+.g-chongqing {} .g-chongqing .main {
+    background: #16123f;
+    position: relative;
+    width: 100%;
+}
+.g-chongqing .main .module {
+    position: relative;
+    top: -122px;
+    width: 980px;
+    margin: 0 auto;
+}
+.g-ie6-click-fixed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    opacity: 0;
+    filter: alpha(opacity=0)
+}
+
+.animated-1 {
+    animation-duration: .7s;
+    animation-fill-mode: both;
+}
+.animated-2 {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-delay: 1s;
+}
+.animated-3 {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-delay: 1.8s;
+}

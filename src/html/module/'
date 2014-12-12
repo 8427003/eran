@@ -1,0 +1,225 @@
+<!--txt-pic 左边图片，右边文字介绍-->
+<div class="m-pic-list">
+    <div class="inner">
+        <div class="content clearfix">
+            <ul class="m-product-show-2 g-fl">
+                <li class="item">
+                    <a class="item-inner" href="#" target="_blank" title="###">
+                        <div class="pic-wrap">
+                            <!--
+                            <a class="pic">
+                                -->
+                                <img src="http://placehold.it/230x220">
+                                <!--
+                            </a>
+                            -->
+                            <div class="desc-wrap">
+                                <div class="desc-bg"></div>
+                                <p>希尔顿五洲国际酒店渝中店</p>
+                            </div>
+                        </div>
+                        <div class="m-buy-wrap clearfix">
+                            <div class="txt-wrap g-fl w134">
+                                <div class="txt-bg"></div>
+                                <div class="txt-discount">
+                                    <span class="tt">折扣价：</span>
+                                    <span class="g-rmb font18">&yen;</span>
+                                    <span class="price font18">290</span>
+                                </div>
+                                <div class="txt-original">
+                                    <span class="tt">原价：</span>
+                                    <span class="g-rmb">&yen;</span>
+                                    <span class="price">1890</span>
+                                </div>
+                            </div>
+
+                            <div class="btn-wrap w96 g-fl">
+                                <!--
+                                <a href="##">
+                                    -->
+                                    <button class="btn">点击购买</button>
+                                    <!--
+                                </a>
+                                -->
+                            </div>
+                        </div>
+
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="item-inner" href="#" target="_blank" title="###">
+                        <div class="pic-wrap">
+                            <!--
+                            <a class="pic">
+                                -->
+                                <img src="http://placehold.it/230x220">
+                                <!--
+                            </a>
+                            -->
+                            <div class="desc-wrap">
+                                <div class="desc-bg"></div>
+                                <p>希尔顿五洲国际酒店渝中店</p>
+                            </div>
+                        </div>
+                        <div class="m-buy-wrap clearfix">
+                            <div class="txt-wrap g-fl">
+                                <div class="txt-bg"></div>
+                                <div class="txt-discount w120">
+                                    <span class="tt">折扣价：</span>
+                                    <span class="g-rmb font18">&yen;</span>
+                                    <span class="price font18">290</span>
+                                </div>
+                                <div class="txt-original">
+                                    <span class="tt">原价：</span>
+                                    <span class="g-rmb">&yen;</span>
+                                    <span class="price">1890</span>
+                                </div>
+                            </div>
+
+                            <div class="btn-wrap w96 g-fl">
+                                <!--
+                                <a href="##">
+                                    -->
+                                    <button class="btn">点击购买</button>
+                                    <!--
+                                </a>
+                                -->
+                            </div>
+                        </div>
+
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="item-inner" href="#" target="_blank" title="###">
+                        <div class="pic-wrap">
+                            <!--
+                            <a class="pic">
+                                -->
+                                <img src="http://placehold.it/230x220">
+                                <!--
+                            </a>
+                            -->
+                            <div class="desc-wrap">
+                                <div class="desc-bg"></div>
+                                <p>希尔顿五洲国际酒店渝中店</p>
+                            </div>
+                        </div>
+                        <div class="m-buy-wrap clearfix">
+                            <div class="txt-wrap g-fl">
+                                <div class="txt-bg"></div>
+                                <div class="txt-discount w120">
+                                    <span class="tt">折扣价：</span>
+                                    <span class="g-rmb font18">&yen;</span>
+                                    <span class="price font18">290</span>
+                                </div>
+                                <div class="txt-original">
+                                    <span class="tt">原价：</span>
+                                    <span class="g-rmb">&yen;</span>
+                                    <span class="price">1890</span>
+                                </div>
+                            </div>
+
+                            <div class="btn-wrap w96 g-fl">
+                                <!--
+                                <a href="##">
+                                    -->
+                                    <button class="btn">点击购买</button>
+                                    <!--
+                                </a>
+                                -->
+                            </div>
+                        </div>
+
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="item-inner" href="#" target="_blank" title="###">
+                        <div class="pic-wrap">
+                            <!--
+                            <a class="pic">
+                                -->
+                                <img src="http://placehold.it/230x220">
+                                <!--
+                            </a>
+                            -->
+                            <div class="desc-wrap">
+                                <div class="desc-bg"></div>
+                                <p>希尔顿五洲国际酒店渝中店</p>
+                            </div>
+                        </div>
+                        <div class="m-buy-wrap clearfix">
+                            <div class="txt-wrap g-fl">
+                                <div class="txt-bg"></div>
+                                <div class="txt-discount w120">
+                                    <span class="tt">折扣价：</span>
+                                    <span class="g-rmb font18">&yen;</span>
+                                    <span class="price font18">290</span>
+                                </div>
+                                <div class="txt-original">
+                                    <span class="tt">原价：</span>
+                                    <span class="g-rmb">&yen;</span>
+                                    <span class="price">1890</span>
+                                </div>
+                            </div>
+
+                            <div class="btn-wrap w96 g-fl">
+                                <!--
+                                <a href="##">
+                                    -->
+                                    <button class="btn">点击购买</button>
+                                    <!--
+                                </a>
+                                -->
+                            </div>
+                        </div>
+
+                    </a>
+                </li>
+                 <li class="item">
+                    <a class="item-inner" href="#" target="_blank" title="###">
+                        <div class="pic-wrap">
+                            <!--
+                            <a class="pic">
+                                -->
+                                <img src="http://placehold.it/230x220">
+                                <!--
+                            </a>
+                            -->
+                            <div class="desc-wrap">
+                                <div class="desc-bg"></div>
+                                <p>希尔顿五洲国际酒店渝中店</p>
+                            </div>
+                        </div>
+                        <div class="m-buy-wrap clearfix">
+                            <div class="txt-wrap g-fl">
+                                <div class="txt-bg"></div>
+                                <div class="txt-discount w120">
+                                    <span class="tt">折扣价：</span>
+                                    <span class="g-rmb font18">&yen;</span>
+                                    <span class="price font18">290</span>
+                                </div>
+                                <div class="txt-original">
+                                    <span class="tt">原价：</span>
+                                    <span class="g-rmb">&yen;</span>
+                                    <span class="price">1890</span>
+                                </div>
+                            </div>
+
+                            <div class="btn-wrap w96 g-fl">
+                                <!--
+                                <a href="##">
+                                    -->
+                                    <button class="btn">点击购买</button>
+                                    <!--
+                                </a>
+                                -->
+                            </div>
+                        </div>
+
+                    </a>
+                </li>     
+            </ul>
+        </div>
+    </div>
+</div>
+<!--/txt-pic-->

@@ -1,0 +1,227 @@
+.m-txt-pic {
+    width: 980px;
+    margin: 0 auto;
+}
+.m-txt-pic .inner {
+    position: relative;
+    width: 956px;
+    padding: 14px 12px 19px;
+    background: #dda73a;
+}
+.m-txt-pic .inner .bg {
+    width: 468px;
+    height: 78px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/txt-pic-bg.png) no-repeat;
+}
+.m-product-show-wrap {
+    width: 672px;
+}
+.m-product-show {
+    width: 684px;
+    overflow: hidden;
+}
+.m-product-show .item {
+    float: left;
+    display: inline;
+    font-size: 0;
+}
+.m-product-show .item.mr12 {
+    margin-right: 12px;
+}
+.m-product-show .item.ml12 {
+    margin-left: 12px;
+    _display: inline;
+}
+.m-product-show .item-inner {
+    display: block;
+    cursor: pointer;
+    width: 330px;
+    overflow: hidden;
+    _float: left;
+}
+.m-product-show .item-inner:hover .pic-wrap img {
+    opacity: .9;
+    filter: alpa(opacity=90);
+}
+.m-product-show .pic-wrap {
+    position: relative;
+    width: 330px;
+    height: 220px;
+}
+.m-product-show .pic-wrap img {
+    width: 100%;
+    height: 100%;
+}
+.m-product-show .pic-wrap .desc-wrap {
+    position: absolute;
+    width: 100%;
+    height: 38px;
+    padding-top: 18px;
+    overflow: hidden;
+    bottom: 0;
+    left: 0;
+}
+.m-product-show .pic-wrap .desc-wrap p {
+    font: 18px/20px"Microsoft Yahei";
+    height: 20px;
+    color: #ffffcc;
+    padding: 0 7px;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.m-product-show .pic-wrap .desc-bg {
+    width: 100%;
+    position: absolute;
+    height: 56px;
+    background: #000;
+    opacity: .5;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    filter: alpha(opacity=50);
+}
+.m-buy-wrap {
+    width: 100%;
+    height: 62px;
+    // overflow: hidden;
+
+}
+.m-buy-wrap .w174 {
+    width: 174px;
+}
+.m-buy-wrap .w156 {
+    width: 156px;
+}
+.m-buy-wrap .w96 {
+    width: 96px;
+}
+.m-buy-wrap .w134 {
+    width: 134px;
+}
+.m-buy-wrap .txt-wrap {
+    padding: 8px 0;
+    position: relative;
+}
+.m-buy-wrap .txt-wrap .txt-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 62px;
+    background: #000;
+    opacity: .7;
+    filter: alpa(opacity=70);
+}
+.m-buy-wrap .txt-discount {
+    height: 26px;
+    font-size: 0;
+    padding: 0 7px;
+    position: relative;
+}
+.m-buy-wrap .txt-discount .tt {
+    font: 18px/20px"Microsoft Yahei";
+    color: #ff6633;
+    letter-spacing: -1px;
+    vertical-align: middle;
+}
+.m-buy-wrap .txt-discount .font24 {
+    font-size: 24px;
+    line-height: 26px;
+}
+.m-buy-wrap .txt-discount .font18 {
+    font-size: 18px;
+    line-height: 20px;
+}
+.m-buy-wrap .txt-discount .g-rmb {
+    color: #ff6633;
+    vertical-align: middle;
+}
+.m-buy-wrap .txt-discount .price {
+    font-family: "Microsoft Yahei";
+    vertical-align: middle;
+    color: #ff6633;
+}
+.m-buy-wrap .txt-original {
+    position: relative;
+    padding: 0 7px;
+    font-size: 0;
+    height: 20px;
+    overflow: hidden;
+}
+.m-buy-wrap .txt-original .tt {
+    font: 18px/20px"Microsoft Yahei";
+    color: #ffffcc;
+    vertical-align: middle;
+}
+.m-buy-wrap .txt-original .g-rmb {
+    font-size: 18px;
+    line-height: 20px;
+    color: #ffffcc;
+    vertical-align: middle;
+}
+.m-buy-wrap .txt-original .price {
+    font: 18px/20px"Microsoft Yahei";
+    color: #ffffcc;
+    vertical-align: middle;
+}
+.m-product-show .btn-wrap {} .m-product-show .btn-wrap .btn {
+    display: inline-block;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    height: 62px;
+    background: #ff6600;
+    color: #ffffcc;
+    text-align: center;
+    font: 21px/62px"Microsoft Yahei";
+    cursor: pointer;
+}
+.m-introduction-wrap {
+    width: 272px;
+}
+.m-introduction-wrap .txt-wrap {
+    width: 100%;
+    height: 212px;
+    padding-top: 8px;
+    overflow: hidden;
+}
+.m-introduction-wrap .city-name {
+    font: 48px/50px"Microsoft Yahei";
+    padding-left: 3px;
+    color: #fff;
+}
+.m-introduction-wrap .city-desc {
+    padding: 13px 0 0 3px;
+    font: 18px/26px"Microsoft Yahei";
+    color: #fff;
+}
+.m-introduction-wrap .btn-more-wrap {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+.m-introduction-wrap .btn-more-wrap .btn {
+    display: inline-block;
+    width: 261px;
+    height: 52px;
+    font: 18px/52px"Microsoft Yahei";
+    color: #ffffcc;
+    text-align: center;
+    padding: 0;
+    background: #993300;
+    border: 0;
+    cursor: pointer;
+}
+.g-fl {
+    float: left;
+    display: inline;
+}
+.g-rmb {
+    font-family: "Arial";
+}

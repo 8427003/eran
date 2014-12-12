@@ -1,17 +1,15 @@
-@import "./lib/reset.scss";
+@import "./lib/qunar-reset.scss";
 
 @import "./lib/animated.scss";
 
-@import "./lib/clearfix.scss";
+@import "./module/m-global.scss";
 
-@import "./lib/slide.scss";
+@import "./module/m-banner.scss";
 
-@import "./module/page-1.scss";
+@import "./module/m-txt-pic.scss";
 
-@import "./module/page-2.scss";
+@import "./module/m-pic-list.scss";
 
-@import "./module/page-3.scss";
+@import "./module/m-access.scss";
 
-@import "./module/page-4.scss";
-
-@import "./module/page-5.scss";
+@import "./module/m-bottom.scss";

@@ -1,36 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>来“去哪儿网”开房，佟大为帮您CheckIn</title>
-<meta name="description" content="呵呵呵">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-<meta content="yes" name="apple-mobile-web-app-capable" />
-<meta content="telephone=no" name="format-detection" />
-@@include ('./style/style.html')	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    @@include ('./style/style.html') 
+    @@include ('./script/ie6-png-fix.html')
 </head>
+
 <body>
-	<div class="g-slide-view">
+    @@include ('./qunar/header.html')
+    <!--modules-->
+    <div class='g-chongqing'>
+        <div class="main">
+            @@include ('./module/m-banner.html')
+            <div class="module"> 
+                @@include ('./module/m-txt-pic.html')
 
-		<div class="page-wrap">
-			<div class="page">
-				@@include ('./module/page-1.html')
-			</div>
-			<div class="page" data-slide="true" data-page="m-page-2">
-				@@include ('./module/page-2.html')
-			</div>
-			<div class="page" data-slide="true" data-page="m-page-3">
-				@@include ('./module/page-3.html')
-            </div>
+                @@include ('./module/m-pic-list.html')
 
-			<div class="page" data-slide="true" data-page="m-page-4">
-				@@include ('./module/page-4.html')
+                @@include ('./module/m-pic-txt.html')
+
+                @@include ('./module/m-pic-list.html')
+
+                @@include ('./module/m-txt-pic.html')
+
+                @@include ('./module/m-pic-list.html')
+
+                @@include ('./module/m-pic-txt.html')
+
+                @@include ('./module/m-pic-list.html')
+
+                @@include ('./module/m-txt-pic.html')
+
+                @@include ('./module/m-pic-list.html')
+
+                @@include ('./module/m-pic-txt.html')
+
+                @@include ('./module/m-pic-list.html')
+                @@include ('./module/m-access.html')
             </div>
-            <div class="page" data-slide="true" data-page="m-page-5">
-				@@include ('./module/page-5.html')
-            </div>
-		</div>
-	</div>
-	@@include ('./script/script.html')	
+            @@include ('./module/m-bottom.html')
+        </div>
+    </div>
+    <!--/modules-->
+    @@include ('./qunar/footer-1.html')
+    @@include ('./script/script.html')
+    @@include ('./qunar/footer-2.html')
 </body>
+
 </html>

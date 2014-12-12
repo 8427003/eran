@@ -51,7 +51,7 @@ function runCssTask() {
             browsers: ['last 2 versions']
         }))
         .pipe(minifyCSS({
-              keepBreaks: true
+            //  keepBreaks: true
         }))
         .pipe(gulp.dest('./dist'))
 }
