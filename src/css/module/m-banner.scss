@@ -4,57 +4,40 @@
 .m-banner .bg{
     position:relative;
     width:100%;
-    height:588px;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/banner-bg.jpg) center center no-repeat;  
+    height:1281px;
 }
 .m-banner .txt-wrap{
-    padding:56px;
+    padding:61px 0 0 48px;
+    height:396px;
+    width:932px;
     margin:0 auto;
-    width:540px;
-}
-
-.m-banner .txt-cq{
-    width:263px;
-    height:118px;
-    margin-right:10px;
     overflow:hidden;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -512px;
+}
+.m-banner .txt-wrap .txt-h1-wrap{
+    width:770px;
+    height:186px;
+    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141216/txt-h1-bg.png) no-repeat;
+    position:relative;
+}
+.m-banner .txt-wrap .txt-h2-wrap .txt-h2{
+    margin-top:9px;
+    font:48px/50px "Microsoft Yahei";
+    text-align:center;
+    color:#ffeb8e;
+    padding-right:72px;
+}
+.m-banner .txt-wrap .city-name{
+    position:absolute;
+    top:58px;
+    left:45px;
+    font:48px/50px "Microsoft Yahei";
+    color:#ffeb8e;
 }
 
-.m-banner .txt-discount{
-    margin-top:10px;
-    width:199px;
-    height:36px;
-    overflow:hidden;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -634px;
-}
-
-.m-banner .txt-yue{
-    width:264px;
-    height:68px;
-    margin-top:7px;
-
-    overflow:hidden;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -676px;
-}
-
-
-.m-banner .row-second{
-    margin-top:2px;
-    margin-left:-25px;
-}
-.m-banner .txt-yearend{
-    width:268px;
-    height:251px;
-
-    overflow:hidden;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 0;
-}
-
-.m-banner .txt-bigdisc{
-    width:261px;
-    height:251px;
-
-    overflow:hidden;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -256px;
+.m-banner .txt-wrap .city-name-pinyin{
+    position:absolute;
+    top:115px;
+    left:53px;
+    font:14px/16px "Microsoft Yahei";
+    color:#ffeb8e;
 }

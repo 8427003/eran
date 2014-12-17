@@ -6,49 +6,51 @@
     <title>Examples</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
+    <link rel="stylesheet" type="text/css" href="reset.css"> 
+    <script src="http://qunarzz.com/jquery/prd/jquery-1.7.2.js"></script>
     @@include ('./style/style.html') 
-    @@include ('./script/ie6-png-fix.html')
 </head>
 
 <body>
-    @@include ('./qunar/header.html')
-    <!--modules-->
-    <div class='g-chongqing'>
+    <div class='g-pretty-girl'>
         <div class="main">
+            <!--css 和 js 必须引入 img元素的src建议换成data-original支持图片懒加载-->
+
+            <!--第1楼层+banner-->
             @@include ('./module/m-banner.html')
-            <div class="module"> 
-                @@include ('./module/m-txt-pic.html')
+            <!--/第1楼层+banner-->
 
-                @@include ('./module/m-pic-list.html')
+            <!--第2楼层-->
+            @@include ('./module/m-girl-1.html')
+            <!--/第2楼层-->
 
-                @@include ('./module/m-pic-txt.html')
+            <!--第3楼层-->
+            @@include ('./module/m-girl-2.html')
+            <!--/第3楼层-->
 
-                @@include ('./module/m-pic-list.html')
+            <!--第4楼层-->
+            @@include ('./module/m-girl-3.html')
+            <!--/第4楼层-->
 
-                @@include ('./module/m-txt-pic.html')
+            <!--第5楼层-->
+            @@include ('./module/m-girl-4.html')
+            <!--/第5楼层-->
+            
+            <!--title区域-->
+            @@include ('./module/m-title.html')
+            <!--/title区域-->
 
-                @@include ('./module/m-pic-list.html')
+            <!--[if IE 6]>
+                <script type="text/javascript" src="http://qunarzz.com/js/compatibilityUtils/build/DD_belatedPNG-min.js"></script>
+                <script type="text/javascript">
+                DD_belatedPNG.fix(".m-banner .txt-wrap .txt-h1-wrap,.m-girl .info-wrap .btn-order-wrap .arrow-wrap,.m-girl .info-wrap .more-wrap .arrow.arrow-down,.m-girl .info-wrap .more-wrap .arrow.arrow-up");
+                </script>
+            <![endif]-->
+            
+            @@include ('./script/script.html') 
 
-                @@include ('./module/m-pic-txt.html')
-
-                @@include ('./module/m-pic-list.html')
-
-                @@include ('./module/m-txt-pic.html')
-
-                @@include ('./module/m-pic-list.html')
-
-                @@include ('./module/m-pic-txt.html')
-
-                @@include ('./module/m-pic-list.html')
-                @@include ('./module/m-access.html')
-            </div>
-            @@include ('./module/m-bottom.html')
         </div>
     </div>
-    <!--/modules-->
-    @@include ('./qunar/footer-1.html')
-    @@include ('./script/script.html')
-    @@include ('./qunar/footer-2.html')
 </body>
 
 </html>

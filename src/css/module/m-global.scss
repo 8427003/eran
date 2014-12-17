@@ -1,11 +1,10 @@
-.g-chongqing {} .g-chongqing .main {
-    background: #16123f;
+.g-pretty-girl{} 
+.g-pretty-girl .main {
     position: relative;
     width: 100%;
 }
-.g-chongqing .main .module {
+.g-pretty-girl .main .module {
     position: relative;
-    top: -122px;
     width: 980px;
     margin: 0 auto;
 }
@@ -19,7 +18,26 @@
     opacity: 0;
     filter: alpha(opacity=0)
 }
-
+.g-fl{
+    float:left;
+    display:inline;
+}
+.g-none{
+    display:none;
+}
+.m-girl-access-wrap{
+    position:relative;
+    width:980px;
+    margin:0 auto;
+}
+.Qt_wrap{
+    width:100%;
+}
+.banner{
+    height:0 !important;
+    font-size:0;
+    margin-bottom:0;
+}
 .animated-1 {
     animation-duration: .7s;
     animation-fill-mode: both;

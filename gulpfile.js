@@ -28,7 +28,7 @@ gulp.task('fileinclude-after', function() {
 
 
 gulp.task('fileinclude-first', function() {
-    gulp.src(['./src/html/index.html'])
+    gulp.src(['./src/html/index.html','./src/html/module/m-banner.html','./src/html/module/m-girl-banner.html'])
         .pipe(fileinclude({
             prefix: '@@',
             basepath: '@file'

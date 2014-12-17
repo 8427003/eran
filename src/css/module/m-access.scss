@@ -1,51 +1,123 @@
 .m-access {
     position:absolute;
-    top:0; 
+    top:25px; 
     z-index:999;
-    right:-167px;
-    margin-left:503px;
-    
+    right:-182px;
 } 
 .m-access .inner {
-    width: 154px;
-    background: #eab440;
+    width: 150px;
+    background: #ffec8c;
+    padding:6px;
 }
-.m-access .top-bg {
-    height: 90px;
-    width: 100%;
-    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -750px;
+.m-access .top-wrap {
+    height: 70px;
+    padding-top:43px;
+    width:100%; 
+    position:relative;
+    background:#000;
+}
+
+.m-access .top-wrap .text-wrap{
+    position:relative;
+    top:0;
+    left:0;
+    z-index:2;
+}
+.m-access .top-wrap .txt-1{
+    font:14px/16px "Microsoft Yahei";
+    text-align:center;
+    height:16px;
+    overflow:hidden;
+    color:#ffec8c;
+}
+
+.m-access .top-wrap .txt-2{
+    font:26px/28px "Microsoft Yahei";
+    text-align:center;
+    height:28px;
+    overflow:hidden;
+    color:#ffec8c;
+}
+
+.m-access .top-wrap .txt-3{
+    padding-top:4px;
+    font:14px/16px "Microsoft Yahei";
+    text-align:center;
+    overflow:hidden;
+    height:16px;
+    color:#fff;
+}
+.m-access .top-wrap .pic-wrap{
+    font-size:0;
+    position:absolute;
+    top:0;
+    left:0;
+    text-align:center;
+    width:100%;
+    z-index:1;
+}
+.m-access .top-wrap .pic-wrap img{
+    width:100%;
+    height:78px;
+}
+
+.m-access .bottom-wrap {
+    width:150px;    
+    height:160px;
+    padding-top:23px;
+    background:#000;
 }
 .m-access .wx-wrap {
     text-align: center;
-    margin-top: 7px;
 }
 .m-access .wx-wrap img {
-    width: 132px;
-    height: 132px;
+    width: 98px;
+    height: 98px;
 }
-.m-access .bottom-wrap {} .m-access .bottom-wrap .txt-bg {
-    width: 115px;
-    height: 44px;
-    margin: 13px auto 11px;
-    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -846px;
+.m-access .item-spec a{
+    display:block;
+    font:18px/60px "Microsoft Yahei";
+    height:60px;
+    overflow:hidden;
+    color:#ff6701;
+    text-align:center;
 }
-.m-access .bottom-wrap .btn-wrap a {
-    display: block;
-    width: 154px;
-    height: 50px;
-    margin: 0 auto;
-    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -896px;
+.m-access .bottom-wrap .txt-1{
+    margin-top:11px;
+    text-indent:1em;
+    font:14px/16px "Microsoft Yahei";
+    color:#ffec8c;
+    height:16px;
+    text-align:center;
+    overflow:hidden;
+}
+.m-access .bottom-wrap .txt-2{
+    margin-top:2px;
+    font:14px/16px "Microsoft Yahei";
+    color:#ffec8c;
+    text-align:center;
+    height:16px;
+    overflow:hidden;
+}
+
+.m-access .nav {
+    padding:15px 0;
+    margin-top:2px;
+    background:#000;
 }
 .m-access .nav .item a {
     display: block;
-    width: 100%;
-    height: 43px;
-    font: 18px/43px"Microsoft";
-    color: #490000;
+    width:140px;
+    padding:0 5px;
+    overflow:hidden;
+    height: 52px;
+    font: 14px/52px"Microsoft";
+    color: #fff;
+    white-space:nowrap; 
     text-align: center;
 }
 .m-access .nav .item a.cur,
 .m-access .nav .item a:hover {
-    background: #f7d957;
+    color: #ffec8c;
     text-decoration: none;
 }
