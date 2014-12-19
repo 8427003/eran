@@ -1,133 +1,122 @@
-.animated {
-          animation-duration: 1s;
-          animation-fill-mode: both;
+@keyframes snow-2 {
+    0% {
+        transform: translate3d(50%, -100%, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 100%, 0);
+    }
+}
+.snow-2-1 {
+    animation: snow-2 20s 0s infinite both linear;
+}
+.snow-2-2 {
+    animation: snow-2 20s 6.66s infinite both;
+}
+.snow-2-3 {
+    animation: snow-2 20s 13.33s infinite both;
+}
+@keyframes snow-1 {
+    0% {
+        transform: translate3d(30%, -100%, 0);
+    }
+    100% {
+        transform: translate3d(-30%, 100%, 0);
+    }
+}
+.snow-1-1 {
+    animation: snow-1 25s 0s infinite both;
+}
+.snow-1-2 {
+    animation: snow-1 25s 8.66s infinite both;
+}
+.snow-1-3 {
+    animation: snow-1 25s 17.3s infinite both;
+}
+@keyframes snow-3 {
+    0% {
+        transform: none;
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.snow-3-1 {
+    animation: snow-3 10s 1s infinite both linear;
+}
+.snow-3-2 {
+    animation: snow-3 10s 1s infinite both reverse linear;
+}
+@keyframes txt-1 {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(10%, -30%, 0);
+    }
+    100% {
+        transform: translate3d(20%, 0, 0);
+    }
+}
+.txt-ant-1 {
+    animation: txt-1 .7s .5s both linear infinite alternate;
+}
+@keyframes flight {
+    0% {
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+    100% {
+        transform: translate3d(140%, -45%, 0) scale3d(.6, .6, .6);
+    }
+}
+.flight-ant {
+    animation: flight 8s 2s both linear;
 }
 
-.animated.infinite {
-          animation-iteration-count: infinite;
+@keyframes title-1{
+    0% {
+        width:0;
+    }
+    30% {
+        width:170px; 
+    }
+    100% {
+        width:170px; 
+    }
+}
+.title-ant-1 {
+    animation: title-1 3s 1s both linear infinite;
+}
+@keyframes title-2{
+    0% {
+        width:0;
+    }
+    30% {
+        width: 250px;
+    }
+    100% {
+        width: 250px;
+    }
+}
+.title-ant-2 {
+    animation: title-2 3s 1s both linear infinite;
+}
+@keyframes title-3{
+    0% {
+        width:0;
+    }
+    30% {
+        width: 151px;
+    }
+    100% {
+        width: 151px;
+    }
+}
+.title-ant-3 {
+    animation: title-3 5s 1s both linear infinite;
 }
 
-.animated.hinge {
-          animation-duration: 2s;
-}
-
-@keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-}
-
-.fadeIn {
-  animation-name: fadeIn;
-}
-
-@keyframes flipInX {
-  0% {
-    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-    transition-timing-function: ease-in;
-    opacity: 0;
-  }
-
-  40% {
-    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-    transition-timing-function: ease-in;
-  }
-
-  60% {
-    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-    opacity: 1;
-  }
-
-  80% {
-    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
-  }
-
-  100% {
-    transform: perspective(400px);
-  }
-}
-
-.flipInX {
-  backface-visibility: visible !important;
-  animation-name: flipInX;
-}
-
-@keyframes fadeInLeftBig {
-  0% {
-    opacity: 0;
-    transform: translate3d(-2000px, 0, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.fadeInLeftBig {
-  animation-name: fadeInLeftBig;
-}
-
-@keyframes fadeInRightBig {
-  0% {
-    opacity: 0;
-    transform: translate3d(2000px, 0, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.fadeInRightBig {
-  animation-name: fadeInRightBig;
-}
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.fadeInDown {
-  animation-name: fadeInDown;
-}
-
-@keyframes rubberBand {
-  0% {
-    transform: scale3d(1, 1, 1);
-  }
-
-  30% {
-    transform: scale3d(1.25, 0.75, 1);
-  }
-
-  40% {
-    transform: scale3d(0.75, 1.25, 1);
-  }
-
-  50% {
-    transform: scale3d(1.15, 0.85, 1);
-  }
-
-  65% {
-    transform: scale3d(.95, 1.05, 1);
-  }
-
-  75% {
-    transform: scale3d(1.05, .95, 1);
-  }
-
-  100% {
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-.rubberBand {
-  animation-name: rubberBand;
-}

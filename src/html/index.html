@@ -1,56 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Examples</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <link rel="stylesheet" type="text/css" href="reset.css"> 
-    <script src="http://qunarzz.com/jquery/prd/jquery-1.7.2.js"></script>
-    @@include ('./style/style.html') 
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    @@include ('./style/style.html')
 </head>
 
 <body>
-    <div class='g-pretty-girl'>
-        <div class="main">
-            <!--css 和 js 必须引入 img元素的src建议换成data-original支持图片懒加载-->
+    <!--第1楼层+banner-->
+    @@include ('./module/m-banner.html')
+    <!--/第1楼层+banner-->
 
-            <!--第1楼层+banner-->
-            @@include ('./module/m-banner.html')
-            <!--/第1楼层+banner-->
+    @@include ('./module/m-title-1.html')
 
-            <!--第2楼层-->
-            @@include ('./module/m-girl-1.html')
-            <!--/第2楼层-->
+    @@include ('./module/m-title-2.html')
 
-            <!--第3楼层-->
-            @@include ('./module/m-girl-2.html')
-            <!--/第3楼层-->
+    @@include ('./module/m-title-3.html')
 
-            <!--第4楼层-->
-            @@include ('./module/m-girl-3.html')
-            <!--/第4楼层-->
+    <!--[if IE 6]>
+        <script type="text/javascript" src="http://qunarzz.com/js/compatibilityUtils/build/DD_belatedPNG-min.js"></script>
+        <script type="text/javascript">
+            DD_belatedPNG.fix(".m-title-1 .title-small-1,.m-title-2 .title-small-2,.m-title-3 .title-small-3,.m-banner .bg-wrap .snow-small,.m-banner .bg-wrap .snow-big,.m-banner .txt-wrap .txt-1,.m-banner .txt-wrap .txt-2,.m-banner .txt-wrap .txt-3,.m-banner .txt-wrap .txt-4,.m-banner .txt-wrap .txt-5,.m-banner .txt-wrap .txt-6,.m-banner .txt-wrap .snow-bigger-1,.m-banner .txt-wrap .snow-bigger-2,.m-banner .txt-wrap .flight");
+        </script>
+    <![endif]-->
 
-            <!--第5楼层-->
-            @@include ('./module/m-girl-4.html')
-            <!--/第5楼层-->
-            
-            <!--title区域-->
-            @@include ('./module/m-title.html')
-            <!--/title区域-->
 
-            <!--[if IE 6]>
-                <script type="text/javascript" src="http://qunarzz.com/js/compatibilityUtils/build/DD_belatedPNG-min.js"></script>
-                <script type="text/javascript">
-                DD_belatedPNG.fix(".m-banner .txt-wrap .txt-h1-wrap,.m-girl .info-wrap .btn-order-wrap .arrow-wrap,.m-girl .info-wrap .more-wrap .arrow.arrow-down,.m-girl .info-wrap .more-wrap .arrow.arrow-up");
-                </script>
-            <![endif]-->
-            
-            @@include ('./script/script.html') 
-
-        </div>
-    </div>
 </body>
 
 </html>

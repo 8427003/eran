@@ -1,43 +1,137 @@
-.m-banner{
+/**reset --start**/
+.Qt_wrap{
     width:100%;
+    background:#003470;
 }
-.m-banner .bg{
-    position:relative;
-    width:100%;
-    height:1281px;
+.banner{
+    height:0 !important;
+    font-size:0;
+    margin-bottom:0;
 }
-.m-banner .txt-wrap{
-    padding:61px 0 0 48px;
-    height:396px;
-    width:932px;
-    margin:0 auto;
-    overflow:hidden;
+/**reset ---end**/
+.m-banner {
+    width: 100%;
+    height:766px;
 }
-.m-banner .txt-wrap .txt-h1-wrap{
-    width:770px;
-    height:186px;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141216/txt-h1-bg.png) no-repeat;
-    position:relative;
+.m-banner .inner {
+    width: 100%;
+    position: relative;
 }
-.m-banner .txt-wrap .txt-h2-wrap .txt-h2{
-    margin-top:9px;
-    font:48px/50px "Microsoft Yahei";
-    text-align:center;
-    color:#ffeb8e;
-    padding-right:72px;
+.m-banner .bg-wrap {
+    width: 100%;
+    height: 766px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
-.m-banner .txt-wrap .city-name{
-    position:absolute;
-    top:58px;
-    left:45px;
-    font:48px/50px "Microsoft Yahei";
-    color:#ffeb8e;
+.m-banner .bg-wrap .banner-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 766px;
+    background: #003470 url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141219/banner-bg.jpg') no-repeat center center;
 }
-
-.m-banner .txt-wrap .city-name-pinyin{
-    position:absolute;
-    top:115px;
-    left:53px;
-    font:14px/16px "Microsoft Yahei";
-    color:#ffeb8e;
+.m-banner .bg-wrap .snow-small {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 690px;
+    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141219/snow-small.png') no-repeat center center;
+}
+.m-banner .bg-wrap .snow-big {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 686px;
+    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141219/snow-big.png') no-repeat center center;
+}
+.m-banner .txt-wrap {
+    width: 1080px;
+    position: relative;
+    margin: 0 auto;
+}
+.m-banner .txt-wrap .txt-1 {
+    position: absolute;
+    display: inline-block;
+    top: 85px;
+    left: 165px;
+    width:247px;
+    height:240px;
+    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141219/sprite.png') no-repeat 0 0;
+}
+.m-banner .txt-wrap .txt-2 {
+    position: absolute;
+    display: inline-block;
+    width:107px;
+    height:140px;
+    top: 137px;
+    left: 380px;
+    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141219/sprite.png') no-repeat 0 -250px;
+}
+.m-banner .txt-wrap .txt-3 {
+    position: absolute;
+    display: inline-block;
+    width:205px;
+    height:239px;
+    top: 67px;
+    left: 500px;
+    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141219/sprite.png') no-repeat 0 -399px;
+}
+.m-banner .txt-wrap .txt-4 {
+    display: inline-block;
+    position: absolute;
+    width:177px;
+    height:176px;
+    top: 118px;
+    left: 704px;
+    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141219/sprite.png') no-repeat 0 -649px;
+}
+.m-banner .txt-wrap .txt-5 {
+    position: absolute;
+    display: inline-block;
+    width:183px;
+    height:180px;
+    top: 240px;
+    left: 610px;
+    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141219/sprite.png') no-repeat 0 -837px;
+}
+.m-banner .txt-wrap .txt-6 {
+    position: absolute;
+    display: inline-block;
+    width:222px;
+    height:125px;
+    top: 295px;
+    left: 386px;
+    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141219/sprite.png') no-repeat 0 -1027px;
+}
+.m-banner .txt-wrap .snow-bigger-1 {
+    position: absolute;
+    display: inline-block;
+    width:140px;
+    height:140px;
+    top: 85px;
+    left: 0;
+    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141219/sprite.png') no-repeat 0 -1235px;
+}
+.m-banner .txt-wrap .snow-bigger-2 {
+    position: absolute;
+    display: inline-block;
+    width:120px;
+    height:120px;
+    top: 285px;
+    right: 0;
+    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141219/sprite.png') no-repeat 0 -1385px;
+}
+.m-banner .txt-wrap .flight {
+    position: absolute;
+    display: inline-block;
+    width:126px;
+    height:118px;
+    top: 472px;
+    left: 551px;
+    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141219/sprite.png') no-repeat 0 -1511px;
 }
