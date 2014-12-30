@@ -1,4 +1,4 @@
-var $ = require('./lib/jquery.lazyload.js');
+var $ = require('./lib/jquery.js');
 (function() {
     function Fixed(args) {
         this.targetDom = $(args.targetDom);
@@ -21,11 +21,14 @@ var $ = require('./lib/jquery.lazyload.js');
         $('.js-access-nav').delegate('a', 'click', function() {
             $('.js-access-nav a').removeClass('cur');
             $(this).addClass('cur');
-            var scrollTop = $(document).scrollTop();
-            var offset = parseInt($(this).attr('data-offset'), 10);
-            $('html,body').animate({
-                scrollTop: offset
-            });
+            var tabIndex = parseInt($(this).attr('data-tab-index'), 10);
+            var curTab = $('.tablist li:eq(' + tabIndex + ')');
+            if (!curTab.hasClass('active')) {
+                curTab.find('a').trigger('click');
+            }
+
+            _this.scrollHandler();
+
         });
     }
     Fixed.prototype.scrollHandler = function() {
@@ -42,34 +45,89 @@ var $ = require('./lib/jquery.lazyload.js');
                 if (offset > 0) {
                     _this.targetDom.animate({
                         "top": offset + "px"
-                    }, 1000);
+                    }, 500);
                 } else {
                     _this.targetDom.animate({
                         "top": 0
-                    }, 1000);
+                    }, 500);
                 }
-            }, 500);
+            }, 300);
         };
     }
     Fixed.prototype.initItem = function() {
-        var cityList = $('.city-name');
+        var cityList = $('.panellist .hot-city');
         var cites = [];
         cityList.each(function(index, item) {
-            cites.push('<li class="item"><a href="javascript:;" title="" data-offset="' + ($(this).offset().top - 30) + '">' + $(this).html() + '</a></li>');
+            var li = $(this).parents('li');
+            var tabIndex = li.parent().find('li.item').index(li);
+            var text = $.trim($(this).html());
+            $(this).before('<a style="font-size:0;line-height:0;" name="' + text + '"></a>');
+
+            if (index > 4) {
+                cites.push('<li class="item bg-red"><a href="#' + text + '" data-tab-index="' + tabIndex + '" >' + text + '</a></li>');
+            } else {
+                cites.push('<li class="item"><a href="#' + text + '" data-tab-index="' + tabIndex + '" >' + text + '</a></li>');
+            }
+
         });
         $('.js-access-nav').html(cites.join(''));
     }
     window.Fixed = Fixed;
 })();
-
-new Fixed({
-    targetDom: '.js-access'
+var fixed = new Fixed({
+    targetDom: '.js-accesss'
 });
 
-// 图片延迟加载
-$("img").lazyload({
-    effect: "fadeIn"
+(function() {
+    function Swichable(args) {
+        this.tablist = $(".tablist");
+        this.panellist = $(".panellist");
+        this.disNone = 'g-none';
+        this.active = 'active';
+        this.current = 'current';
+        this.afterSwich = (args || {}).afterSwich;
+        this.init();
+    }
+    Swichable.prototype.init = function() {
+
+        this._bind();
+    }
+    Swichable.prototype._bind = function() {
+        var that = this;
+        this.tablist.delegate('li a', 'click', function() {
+            var item = $(this).parent();
+            var index = that.tablist.find('li').index(item);
+            var curItem = that.tablist.find('li:eq(' + index + ')');
+            that.showCurPanel(index);
+            that.tablist.find('li').removeClass(that.active);
+            curItem.addClass(that.active);
+
+            if (that.afterSwich && typeof that.afterSwich === 'function') {
+                that.afterSwich();
+            }
+        });
+    }
+    Swichable.prototype.showCurPanel = function(index) {
+        var curPanelItem = this.panellist.find('li:eq(' + index + ')');
+        this.panellist.find('li').addClass(this.disNone).removeClass(this.current);
+        curPanelItem.removeClass(this.disNone).addClass(this.current);
+    }
+    window.Swichable = Swichable;
+})();
+new Swichable({
+    afterSwich: function() {
+        // fixed.initItem();
+    }
 });
-$('.txt-yue').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-    $(this).removeClass('animated-3 fadeIn').addClass("animated rubberBand");
-});
+
+//页面初始化，处理hash，是页面内容转到指定hash下
+var cityName = $.trim(window.location.hash);
+if (cityName) {
+    cityName = cityName.substr(1, cityName.length);
+    var cityNavList = $('.js-access-nav li a');
+    cityNavList.each(function(index, item) {
+        if ($(this).html() == cityName) {
+            $(this).trigger('click');
+        }
+    });
+}

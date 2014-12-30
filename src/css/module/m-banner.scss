@@ -1,60 +1,52 @@
-.m-banner{
-    width:100%;
+.m-banner {
+    width: 100%;
 }
-.m-banner .bg{
-    position:relative;
-    width:100%;
-    height:588px;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/banner-bg.jpg) center center no-repeat;  
+.m-banner .bg {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141229/buding-bg.jpg) center center no-repeat;
 }
-.m-banner .txt-wrap{
-    padding:56px;
-    margin:0 auto;
-    width:540px;
+.m-banner .txt-wrap {
+    height: 100%;
+    width: 980px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
 }
-
-.m-banner .txt-cq{
-    width:263px;
-    height:118px;
-    margin-right:10px;
-    overflow:hidden;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -512px;
+.m-banner .txt-wrap .discount {
+    width: 259px;
+    height: 82px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141229/discount.png) no-repeat;
+    position: absolute;
+    left: 126px;
+    top: 187px;
 }
-
-.m-banner .txt-discount{
-    margin-top:10px;
-    width:199px;
-    height:36px;
-    overflow:hidden;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -634px;
-}
-
-.m-banner .txt-yue{
-    width:264px;
-    height:68px;
-    margin-top:7px;
-
-    overflow:hidden;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -676px;
+.m-banner .txt-wrap .lowest {
+    width: 355px;
+    position: absolute;
+    left: 384px;
+    top: 265px;
+    height: 69px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141229/lowest.png) no-repeat;
 }
 
-
-.m-banner .row-second{
-    margin-top:2px;
-    margin-left:-25px;
+.m-banner .txt-wrap .gz{
+  position:absolute;
+    bottom:25px;
+    left:257px;
 }
-.m-banner .txt-yearend{
-    width:268px;
-    height:251px;
-
-    overflow:hidden;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 0;
+.m-banner .txt-wrap .gz .tt {
+    font: bold 18px/20px "Microsoft Yahei";
+    color:#000;
+    padding-bottom:5px;
+  
+}
+.m-banner .txt-wrap .gz .items p{
+    font:16px/24px "Microsoft Yahei";
+    color:#ae0000;
 }
 
-.m-banner .txt-bigdisc{
-    width:261px;
-    height:251px;
-
-    overflow:hidden;
-    background:url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -256px;
+.m-banner .txt-wrp .gz .items p.indent{
+    text-indent:18px;
 }

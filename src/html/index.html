@@ -7,42 +7,24 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     @@include ('./style/style.html') 
-    @@include ('./script/ie6-png-fix.html')
+<!--[if IE 6]>
+<script type="text/javascript" src="http://qunarzz.com/js/compatibilityUtils/build/DD_belatedPNG-min.js"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix(".m-banner .txt-wrap .discount,.m-banner .txt-wrap .lowest,.m-access .top-bg,.m-access .bottom-wrap");
+</script>
+<![endif]-->
 </head>
 
 <body>
     @@include ('./qunar/header.html')
     <!--modules-->
-    <div class='g-chongqing'>
-        <div class="main">
+    <div class='g-buding'>
+        <div class="main" id="js-panel-tab-show">
             @@include ('./module/m-banner.html')
-            <div class="module"> 
-                @@include ('./module/m-txt-pic.html')
 
-                @@include ('./module/m-pic-list.html')
+            @@include ('./module/m-nav-tab.html')
 
-                @@include ('./module/m-pic-txt.html')
-
-                @@include ('./module/m-pic-list.html')
-
-                @@include ('./module/m-txt-pic.html')
-
-                @@include ('./module/m-pic-list.html')
-
-                @@include ('./module/m-pic-txt.html')
-
-                @@include ('./module/m-pic-list.html')
-
-                @@include ('./module/m-txt-pic.html')
-
-                @@include ('./module/m-pic-list.html')
-
-                @@include ('./module/m-pic-txt.html')
-
-                @@include ('./module/m-pic-list.html')
-                @@include ('./module/m-access.html')
-            </div>
-            @@include ('./module/m-bottom.html')
+            @@include ('./module/m-table-list.html')
         </div>
     </div>
     <!--/modules-->
