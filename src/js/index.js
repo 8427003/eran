@@ -11,7 +11,7 @@ var $ = require('./lib/jquery.js');
     }
     Fixed.prototype.bind = function() {
         var _this = this;
-        $(window).on('scroll', this.scrollHandler());
+       // $(window).on('scroll', this.scrollHandler());
         $('.js-re-top').on('click', function() {
             $('.js-access-nav a').removeClass('cur');
             $('body,html').animate({
@@ -21,13 +21,11 @@ var $ = require('./lib/jquery.js');
         $('.js-access-nav').delegate('a', 'click', function() {
             $('.js-access-nav a').removeClass('cur');
             $(this).addClass('cur');
-            var tabIndex = parseInt($(this).attr('data-tab-index'), 10);
-            var curTab = $('.tablist li:eq(' + tabIndex + ')');
-            if (!curTab.hasClass('active')) {
-                curTab.find('a').trigger('click');
-            }
-
-            _this.scrollHandler();
+            var scrollTop = $(document).scrollTop();
+            var offset = parseInt($(this).attr('data-offset'), 10);
+            $('html,body').animate({
+                scrollTop: offset
+            });
 
         });
     }
@@ -41,10 +39,9 @@ var $ = require('./lib/jquery.js');
             timer = window.setTimeout(function() {
                 var scrollTop = $(document).scrollTop(),
                     offset = scrollTop - _this._initOffsetTop;
-
                 if (offset > 0) {
                     _this.targetDom.animate({
-                        "top": offset + "px"
+                        "top": offset+150 + "px"
                     }, 500);
                 } else {
                     _this.targetDom.animate({
@@ -55,22 +52,18 @@ var $ = require('./lib/jquery.js');
         };
     }
     Fixed.prototype.initItem = function() {
-        var cityList = $('.panellist .hot-city');
+        var cityList = $('.m-tab');
         var cites = [];
+        var offset;
         cityList.each(function(index, item) {
-            var li = $(this).parents('li');
-            var tabIndex = li.parent().find('li.item').index(li);
-            var text = $.trim($(this).html());
-            $(this).before('<a style="font-size:0;line-height:0;" name="' + text + '"></a>');
-
-            if (index > 4) {
-                cites.push('<li class="item bg-red"><a href="#' + text + '" data-tab-index="' + tabIndex + '" >' + text + '</a></li>');
-            } else {
-                cites.push('<li class="item"><a href="#' + text + '" data-tab-index="' + tabIndex + '" >' + text + '</a></li>');
+            offset = $(this).offset().top - 150;
+            cites.push('<li class="item"><a href="javascript:;" data-offset="' + offset + '">' + $(this).attr('data-name') +'</a>' );
+            if(index != cityList.length - 1){
+                cites.push('<span class="after-bg"></span>');
             }
-
+            cites.push('</li>');
         });
-        $('.js-access-nav').html(cites.join(''));
+        $('.js-access-nav').html(cites.join(''))
     }
     window.Fixed = Fixed;
 })();
@@ -80,12 +73,12 @@ var fixed = new Fixed({
 
 (function() {
     function Swichable(args) {
-        this.tablist = $(".tablist");
-        this.panellist = $(".panellist");
+        this.tablist = $(args.tablist);
+        this.panellist = $(args.panellist);
         this.disNone = 'g-none';
-        this.active = 'active';
-        this.current = 'current';
-        this.afterSwich = (args || {}).afterSwich;
+        this.active = 'cur';
+        this.panelItem = '.list-wrap';
+        this.current = 'cur';
         this.init();
     }
     Swichable.prototype.init = function() {
@@ -101,33 +94,57 @@ var fixed = new Fixed({
             that.showCurPanel(index);
             that.tablist.find('li').removeClass(that.active);
             curItem.addClass(that.active);
-
-            if (that.afterSwich && typeof that.afterSwich === 'function') {
-                that.afterSwich();
-            }
         });
     }
     Swichable.prototype.showCurPanel = function(index) {
-        var curPanelItem = this.panellist.find('li:eq(' + index + ')');
-        this.panellist.find('li').addClass(this.disNone).removeClass(this.current);
-        curPanelItem.removeClass(this.disNone).addClass(this.current);
+        var curPanelItem = this.panellist.find(this.panelItem + ':eq(' + index + ')');
+        this.panellist.find(this.panelItem).addClass(this.disNone);
+        curPanelItem.removeClass(this.disNone);
+
+        loadTabImg(curPanelItem);
     }
     window.Swichable = Swichable;
 })();
-new Swichable({
-    afterSwich: function() {
-        // fixed.initItem();
-    }
-});
-
-//页面初始化，处理hash，是页面内容转到指定hash下
-var cityName = $.trim(window.location.hash);
-if (cityName) {
-    cityName = cityName.substr(1, cityName.length);
-    var cityNavList = $('.js-access-nav li a');
-    cityNavList.each(function(index, item) {
-        if ($(this).html() == cityName) {
-            $(this).trigger('click');
-        }
+function loadTabImg($curPanelItem){
+    var imgs = $curPanelItem.find('.pic-wrap .pic');
+    imgs.each(function(index,item){
+        $(this).attr('src',$(this).attr('data-original'));
     });
 }
+new Swichable({
+    tablist: ".js-tab-nav-1",
+    panellist: ".js-tab-list-1"
+});
+
+new Swichable({
+    tablist: ".js-tab-nav-2",
+    panellist: ".js-tab-list-2"
+});
+
+new Swichable({
+    tablist: ".js-tab-nav-3",
+    panellist: ".js-tab-list-3"
+});
+
+new Swichable({
+    tablist: ".js-tab-nav-4",
+    panellist: ".js-tab-list-4"
+});
+/**
+ $("img").lazyload({
+            effect : "fadeIn"
+        });
+       **/
+var ie6 = navigator.userAgent.indexOf("MSIE 6.0") > 0;
+if(ie6){
+    function IE6Handler(){
+        var scrollTop       = $(document).scrollTop();
+        var clientHeight    = $(window).height();
+        var offsetHeight    = $(".js-accesss").height();
+        var offsetTop  = scrollTop + clientHeight - offsetHeight - 100 - 631;
+        $('.js-accesss').css({'top':offsetTop + "px","position":"absolute","bottom":"auto"});     
+    }
+    IE6Handler();
+    $(window).on('scroll',IE6Handler );
+}
+           

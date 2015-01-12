@@ -1,133 +1,182 @@
 .animated {
-          animation-duration: 1s;
-          animation-fill-mode: both;
+    animation-duration: 1s;
+    animation-fill-mode: both;
 }
-
 .animated.infinite {
-          animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
 }
 
+.animated-1 {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-delay:1s;
+}
 .animated.hinge {
-          animation-duration: 2s;
+    animation-duration: 2s;
 }
-
-@keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-}
-
-.fadeIn {
-  animation-name: fadeIn;
-}
-
-@keyframes flipInX {
-  0% {
-    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-    transition-timing-function: ease-in;
-    opacity: 0;
+@keyframes bounceInDown {
+  0%, 60%, 75%, 90%, 100% {
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
-  40% {
-    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-    transition-timing-function: ease-in;
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
   }
 
   60% {
-    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
     opacity: 1;
-  }
-
-  80% {
-    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
-  }
-
-  100% {
-    transform: perspective(400px);
-  }
-}
-
-.flipInX {
-  backface-visibility: visible !important;
-  animation-name: flipInX;
-}
-
-@keyframes fadeInLeftBig {
-  0% {
-    opacity: 0;
-    transform: translate3d(-2000px, 0, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.fadeInLeftBig {
-  animation-name: fadeInLeftBig;
-}
-
-@keyframes fadeInRightBig {
-  0% {
-    opacity: 0;
-    transform: translate3d(2000px, 0, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.fadeInRightBig {
-  animation-name: fadeInRightBig;
-}
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.fadeInDown {
-  animation-name: fadeInDown;
-}
-
-@keyframes rubberBand {
-  0% {
-    transform: scale3d(1, 1, 1);
-  }
-
-  30% {
-    transform: scale3d(1.25, 0.75, 1);
-  }
-
-  40% {
-    transform: scale3d(0.75, 1.25, 1);
-  }
-
-  50% {
-    transform: scale3d(1.15, 0.85, 1);
-  }
-
-  65% {
-    transform: scale3d(.95, 1.05, 1);
+    transform: translate3d(0, 25px, 0);
   }
 
   75% {
-    transform: scale3d(1.05, .95, 1);
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0);
   }
 
   100% {
-    transform: scale3d(1, 1, 1);
+    transform: none;
+  }
+}
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
   }
 }
 
-.rubberBand {
-  animation-name: rubberBand;
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+.zoomIn {
+  animation-name: zoomIn;
+}
+@keyframes rollIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rollIn {
+  animation-name: rollIn;
+}
+.bounceInDown {
+  animation-name: bounceInDown;
+}
+@keyframes txt-ant {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 420px;
+    }
+}
+.txt-bottom-ant {
+    animation: txt-ant 1.5s 1s both linear;
+}
+@keyframes suns {
+    0% {
+        transform: none;
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.sun-ant {
+    animation: suns 5s 3s infinite both linear;
+}
+@keyframes dog {
+    0% {
+        transform: none;
+    }
+    80% {
+        transform: translate3d(200px, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+.dog-ant {
+    animation: dog 20s 3s infinite both linear;
+}
+@keyframes flight {
+    0% {
+        transform: translate3d(-600px, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0) scale(0.1);
+        opacity: 0;
+    }
+}
+.flight-ant {
+    animation: flight 15s 3s infinite both linear;
+}
+@keyframes yun {
+    0% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+    30% {
+        transform: translate3d(-100px, 10px, 0) scale(0.8);
+        opacity: .8;
+    }
+    60% {
+        transform: translate3d(-50px, -10px, 0) scale(0.7);
+        opacity: .7;
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+.yun-ant {
+    animation: yun 30s 3s infinite both linear;
+}
+@keyframes che-ant {
+    0% {
+        transform: translate3d(-479px,-113px,0) scale(.1);
+    }
+    25% {
+                    transform: translate3d(-532px,-50px,0) scale(.25);
+    
+    }
+    35% {
+                    transform: translate3d(-649px,-30px,0) scale(.35);
+    }   
+  
+    50% {
+                    transform: translate3d(-699px,30px,0) scale(.5);
+    }
+    75% {
+                    transform: translate3d(-488px,53px,0) scale(.75);
+    }
+    100% {
+                    transform: translate3d(0,0,0); 
+    }
+}
+.che-ant {
+    animation: che-ant 7s 1s both linear;
 }

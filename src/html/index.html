@@ -3,34 +3,42 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Examples</title>
+    <title></title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     @@include ('./style/style.html') 
-<!--[if IE 6]>
-<script type="text/javascript" src="http://qunarzz.com/js/compatibilityUtils/build/DD_belatedPNG-min.js"></script>
-<script type="text/javascript">
-DD_belatedPNG.fix(".m-banner .txt-wrap .discount,.m-banner .txt-wrap .lowest,.m-access .top-bg,.m-access .bottom-wrap");
-</script>
-<![endif]-->
+
+    @@include ('./script/ie6-png-fix.html') 
 </head>
 
 <body>
-    @@include ('./qunar/header.html')
     <!--modules-->
-    <div class='g-buding'>
-        <div class="main" id="js-panel-tab-show">
-            @@include ('./module/m-banner.html')
+    <div class='m-toptop'>
+        @@include ('./module/m-banner.html')
+        <div class="main">
+            <div class="tabs-wrap">
 
-            @@include ('./module/m-nav-tab.html')
+                @@include ('./module/m-tab-1.html')
 
-            @@include ('./module/m-table-list.html')
+                @@include ('./module/m-tab-logo-1.html')
+                @@include ('./module/m-tab-2.html')
+
+                @@include ('./module/m-tab-logo-2.html')
+                @@include ('./module/m-tab-3.html')
+
+                @@include ('./module/m-tab-logo-3.html')
+                @@include ('./module/m-tab-4.html')
+
+                @@include ('./module/m-access.html')
+            </div>
+            <div class="banner-bg-bt"></div>
+            <div class="bottom-go-wrap">
+                <a class="bottom-go " href="http://tuan.qunar.com/#PAGE/L2JzbmVzL3R1YW5XZWIvbGlzdA__/category/aG90ZWw_/city/5YyX5Lqs/globalCity/YmVpamluZ19jaXR5" target="_blank"></a>
+            </div>
         </div>
     </div>
     <!--/modules-->
-    @@include ('./qunar/footer-1.html')
-    @@include ('./script/script.html')
-    @@include ('./qunar/footer-2.html')
+    @@include ('./script/script.html') 
 </body>
 
 </html>

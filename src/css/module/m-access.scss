@@ -1,70 +1,47 @@
-.m-access {
-    position:absolute;
-    top:0; 
-    z-index:999;
-    right:-180px;
-    margin-left:503px;
-    width: 173px;
-    height:426px;
-} 
-.m-access .inner {
-    position:relative;
-    left:0;
-    width:100px;
-    overflow:hidden;
-    padding-top:140px;
+.m-toptop .m-access {
+    position: fixed;
+    z-index: 999;
+    width: 172px;
+    right: 50%;
+    margin-right: -672px;
+    bottom: 100px;
 }
-.m-access .top-bg{
-    position:absolute;
-    top:0;
-    left:0;
-    width: 173px;
-    height:300px;
-    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141229/access-bg.png) no-repeat;
+.m-toptop .m-access .top-bg {
+    width: 172px;
+    height: 150px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-1.png) no-repeat 0 0;
 }
-.m-access .bottom-wrap{
-    width:100px;
-    height:30px;
-    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20141229/access-bg.png) no-repeat left bottom;
+.m-toptop .m-access .nav {
+    width: 140px;
+    margin: 0 auto;
 }
-.m-access .bottom-wrap .btn-wrap{
-    width:100%;
-    height:100%;
+.m-toptop .m-access .nav li a {
+    display: block;
+    width: 140px;
+    height: 36px;
+    font: 18px / 36px"Microsoft Yahei";
+    color: #000;
+    text-align: center;
+    background: #ffda2b;
 }
-.m-access .bottom-wrap .btn-wrap a{
-    width:100%;
-    height:100%;
-    display:inline-block;
+.m-toptop .m-access .nav li .after-bg {
+    display: block;
+    width: 140px;
+    height: 12px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-2.png) no-repeat 0 -56px;
 }
-.m-access .inner .tt{
-    text-align:center;
-    font:18px/20px "Microsoft Yahei";
-    color:#fff2b5; 
+.m-toptop .m-access .bottom-wrap {
+    width: 110px;
+    height: 31px;
+    margin: 0 auto;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-1.png) no-repeat 0 -869px;
 }
-
-.m-access .nav{
-    padding-top:15px;
-    height:auto !important; 
- 	height:105px; 
- 	min-height:105px !important;
+.m-toptop .m-access .bottom-wrap .btn-wrap {
+    width: 100%;
+    height: 100%;
 }
-.m-access .nav .item{
-    padding:0 5px;
-    width:90px; 
-    height:24px;
-    overflow:hidden;
-    text-align:center;
+.m-toptop .m-access .bottom-wrap .btn-wrap a {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
 }
-.m-access .nav .item.bg-red{
-    background:#aa0817;
-}
-.m-access .nav .item a{
-   color:#fff2b5; 
-    font:14px/24px "SimSun";
-}
-.m-access .nav .item a.cur,
-.m-access .nav .item a:hover {
-    text-decoration: none;
-	color:#ff4500;
-}
-
