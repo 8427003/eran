@@ -1,10 +1,11 @@
-.m-toptop {
-width:100%;
-    background: #00387d;
+.m-yearend {
+    width: 100%;
+    background: #e64225;
+    padding-bottom: 60px;
 }
 .Qt_wrap {
     width: 100%;
-    background: #00387d;
+    background: #e64225;
 }
 .banner {
     height: 0 !important;
@@ -27,33 +28,8 @@ body {
     width: auto !important;
     min-width: 980px !important;
 }
-.m-toptop .main {
+.m-yearend .main {
     position: relative;
-    width: 100%;
-
-}
-.m-toptop .tabs-wrap {
-    position: relative;
-    z-index: 2;
     width: 980px;
     margin: 0 auto;
-}
-.m-toptop .banner-bg-bt {
-    width: 100%;
-    height: 481px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/banner-bg-bt.jpg) no-repeat center center;
-    z-index: 1;
-}
-.m-toptop .bottom-go-wrap {
-    padding: 50px 0 250px;
-}
-.m-toptop .bottom-go-wrap a {
-    display: block;
-    width: 360px;
-    height: 160px;
-    margin: 0 auto;
-    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-1.png) no-repeat 0 -153px;
 }

@@ -10,10 +10,30 @@ var gulp = require('gulp'),
     merge = require('merge-stream'),
     runSequence = require('run-sequence'),
     template = require('gulp-template'),
+    sprite = require('css-sprite').stream,
+    replace = require('gulp-replace'),
     del = require('del');
 
 gulp.task('default', function() {
     runSequence('fileinclude-first', 'merge')
+});
+
+gulp.task('sprites', function() {
+    return gulp.src('./src/images/*.png')
+        .pipe(sprite({
+            name: 'sprite',
+            style: '_sprite.scss',
+            cssPath: './images',
+            processor: 'scss'
+        }))
+        .pipe(gulp.dest('./dist/images/'))
+        .pipe(gulp.dest('./dist/scss/'))
+});
+
+gulp.task('replaces', function() {
+    return gulp.src(['./src/file.txt'])
+        .pipe(replace(/\.\/images\//g, 'http://quarzz.com/'))
+        .pipe(gulp.dest('dist'))
 });
 
 gulp.task('fileinclude-after', function() {
@@ -63,8 +83,9 @@ gulp.task('merge', function() {
         runJsTask(),
         runCssTask()
     ).on('end', function() {
-        gulp.run('fileinclude-after');
+        //gulp.run('fileinclude-after');
     });
+
 
 });
 
@@ -141,135 +162,3 @@ gulp.task('autoprefixer', function () {
         .pipe(gulp.dest('./dist'));
 });
 **/
-
-function getTemplateData() {
-    return {
-        "data": [
-
-                //东北，华北
-                [
-                    //北京
-                    [{
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }, {
-
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }],
-
-                    //天津
-                    [{
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }, {
-
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }],
-                ],
-
-                //华东地区
-                [
-                    //厦门
-                    [{
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }, {
-
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }],
-
-                    //上海
-                    [{
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }, {
-
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }]
-                ],
-
-                //华中、华南
-                [
-                    //三亚
-                    [{
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }, {
-
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }],
-
-                    //广州
-                    [{
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }, {
-
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }]
-                ],
-
-                //西北、西南
-                [
-                    //成都
-                    [{
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }, {
-
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }],
-
-                    //西安
-                    [{
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }, {
-
-                        "name": "【光明楼】7天连锁酒店天坛东",
-                        "price": "1700",
-                        "picUrl": "http://placehold.it/190x127",
-                        "targeturl": "http://baidu.com"
-                    }]
-                ]
-
-            ] //data 结束
-    }
-}

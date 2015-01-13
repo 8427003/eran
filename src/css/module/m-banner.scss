@@ -1,17 +1,14 @@
-.m-toptop .m-banner {
+.m-yearend .m-banner {
     width: 100%;
 }
-.m-toptop .m-banner .bg {
+.m-yearend .m-banner .bg {
     position: relative;
     width: 100%;
-    height: 631px;
-    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/banner-bg-top.jpg) center center no-repeat;
+    overflow: hidden;
+    height: 507px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150113/banner-bg.jpg) center center no-repeat;
 }
-.m-toptop .m-banner .txt-wrap {
-    width: 100%;
-    height: 100%;
-}
-.m-toptop .m-banner .txt-center-wrap {
+.m-yearend .m-banner .txt-wrap {
     position: relative;
     width: 980px;
     height: 100%;
@@ -19,127 +16,43 @@
     left: 0;
     top: 0;
 }
-.m-toptop .m-banner .che {
-    width: 322px;
-    height: 199px;
+.m-yearend .m-banner .txt-price {
     position: absolute;
-    left: 468px;
-    bottom: 30px;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-1.png') 0 -517px no-repeat;
+    top: 254px;
+    left: 60px;
+    width: 283px;
+    height: 209px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150113/sprite.png) no-repeat 0 -452px;
 }
-
-.m-toptop .m-banner .tab-logo-1 {
-    width: 365px;
-    height: 119px;
+.m-yearend .m-banner .txt-hotel {
     position: absolute;
-    left: 0;
-    bottom: 10px;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-2.png') no-repeat 0 -112px;
+    top: 120px;
+    right: 245px;
+    width: 193px;
+    height: 288px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150113/sprite.png) no-repeat -307px -220px;
 }
-.m-toptop .m-banner .fight {
-    width: 118px;
-    height: 49px;
+.m-yearend .m-banner .txt-hands {
     position: absolute;
-    top: 78px;
-    right: 0;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-2.png') no-repeat 0 0;
+    top: -5px;
+    right: 80px;
+    width: 128px;
+    height: 211px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150113/sprite.png) no-repeat -372px -523px;
 }
-.m-toptop .m-banner .dog {
-    width: 67px;
-    height: 51px;
+.m-yearend .m-banner .txt-ding {
     position: absolute;
-    top: 380px;
-    left: 330px;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-1.png') 0 -719px no-repeat;
+    top: 170px;
+    right: 54px;
+    width: 238px;
+    height: 215px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150113/sprite.png) no-repeat -262px 0;
 }
-.m-toptop .m-banner .yun {
-    width: 156px;
-    height: 46px;
+.m-yearend .m-banner .txt-time {
     position: absolute;
-    right: 0px;
-    top: 45px;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-1.png') 0 -915px no-repeat;
-}
-.m-toptop .m-banner .erwm-wrap {
-    position: absolute;
-    width: 146px;
-    height: 171px;
-    right: 75px;
-    bottom: 115px;
-}
-.m-toptop .m-banner .erwm {
-    width: 146px;
-    height: 171px;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-1.png') 0 -318px no-repeat;
-}
-.m-toptop .m-banner .erwm-label {
-    width: 115px;
-    height: 81px;
-    position: absolute;
-    left: -35px;
-    top: -62px;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-1.png') 0 -775px no-repeat;
-}
-.m-toptop .m-banner .sun-wrap {
-    position: absolute;
-    width: 141px;
-    height: 142px;
-    top: 18px;
-    left: 10px;
-}
-.m-toptop .m-banner .sun {
-    width: 141px;
-    height: 142px;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-1.png') 0 -979px no-repeat;
-}
-.m-toptop .m-banner .sunshinei {
-    width: 1114px;
-    height: 342px;
-    position: absolute;
-    left: -356px;
-    top: -18px;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sunshinei.png') no-repeat;
-}
-.m-toptop .m-banner .title-wrap {
-    width: 894px;
-    height: 130px;
-    position: absolute;
-    left: 40px;
-    top: 230px;
-}
-.m-toptop .m-banner .txt-panel {
-    width: 894px;
-    height: 130px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/txt-panel.png') no-repeat 0 0;
-}
-.m-toptop .m-banner .txt-left {
-    width: 462px;
-    height: 178px;
-    position: absolute;
-    left: 40px;
-    top: -115px;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-2.png') no-repeat 0 -280px;
-}
-.m-toptop .m-banner .txt-right {
-    width: 361px;
-    height: 158px;
-    position: absolute;
-    top: -102px;
-    right: 36px;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-2.png') no-repeat 0 -468px;
-}
-.m-toptop .m-banner .txt-bottom-wrap {
-    width: 420px;
-    height: 33px;
-    position: absolute;
-    left: 226px;
-    bottom: 50px;
-}
-.m-toptop .m-banner .txt-bottom {
-    width: 420px;
-    height: 33px;
-    background: url('http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-2.png') no-repeat 0 -240px;
+    right: 76px;
+    bottom: 15px;
+    width: 216px;
+    height: 139px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150113/sprite.png) no-repeat 0 -301px;
 }

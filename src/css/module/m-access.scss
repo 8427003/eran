@@ -1,46 +1,49 @@
-.m-toptop .m-access {
+.m-yearend .m-access {
     position: fixed;
     z-index: 999;
-    width: 172px;
+    width: 176px;
     right: 50%;
-    margin-right: -672px;
+    margin-right: -682px;
     bottom: 100px;
 }
-.m-toptop .m-access .top-bg {
-    width: 172px;
-    height: 150px;
-    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-1.png) no-repeat 0 0;
+.m-yearend .m-access .top-bg {
+    width: 176px;
+    height: 214px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150113/sprite.png) no-repeat 0 0;
 }
-.m-toptop .m-access .nav {
-    width: 140px;
-    margin: 0 auto;
+.m-yearend .m-access .nav {
+    width: 141px;
+    padding-top: 2px;
+    border-left: 4px solid #0d0408;
+    border-right: 2px solid #0d0408;
+    margin-left: 17px;
+    background: #f6ff00;
 }
-.m-toptop .m-access .nav li a {
+.m-yearend .m-access .nav li a {
     display: block;
-    width: 140px;
-    height: 36px;
-    font: 18px / 36px"Microsoft Yahei";
+    border-bottom: 1px solid #0d0408;
+    width: 141px;
+    height: 54px;
+    font: 18px / 54px"Microsoft Yahei";
     color: #000;
     text-align: center;
-    background: #ffda2b;
+    background: #f6ff00;
 }
-.m-toptop .m-access .nav li .after-bg {
-    display: block;
-    width: 140px;
-    height: 12px;
-    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-2.png) no-repeat 0 -56px;
+.m-yearend .m-access .nav li.cur a,
+.m-yearend .m-access .nav li a:hover {
+    color: #e64225;
 }
-.m-toptop .m-access .bottom-wrap {
-    width: 110px;
-    height: 31px;
+.m-yearend .m-access .bottom-wrap {
+    width: 176px;
+    height: 71px;
     margin: 0 auto;
-    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150109/sprite-1.png) no-repeat 0 -869px;
+    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150113/sprite.png) no-repeat 0 -220px;
 }
-.m-toptop .m-access .bottom-wrap .btn-wrap {
+.m-yearend .m-access .bottom-wrap .btn-wrap {
     width: 100%;
     height: 100%;
 }
-.m-toptop .m-access .bottom-wrap .btn-wrap a {
+.m-yearend .m-access .bottom-wrap .btn-wrap a {
     width: 100%;
     height: 100%;
     display: inline-block;

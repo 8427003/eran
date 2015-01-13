@@ -11,57 +11,35 @@ var $ = require('./lib/jquery.js');
     }
     Fixed.prototype.bind = function() {
         var _this = this;
-       // $(window).on('scroll', this.scrollHandler());
         $('.js-re-top').on('click', function() {
-            $('.js-access-nav a').removeClass('cur');
             $('body,html').animate({
                 scrollTop: 0
             });
         });
         $('.js-access-nav').delegate('a', 'click', function() {
-            $('.js-access-nav a').removeClass('cur');
-            $(this).addClass('cur');
-            var scrollTop = $(document).scrollTop();
-            var offset = parseInt($(this).attr('data-offset'), 10);
+            $('.js-access-nav a').parent('li').removeClass('cur');
+            $(this).parent('li').addClass('cur');
+            var index =  parseInt($(this).parent('li').attr('data-index'),10);
+           var offsetTop = parseInt($(this).parent('li').attr('data-offsettop'),10);
             $('html,body').animate({
-                scrollTop: offset
+                scrollTop:offsetTop
             });
+
+            $(".js-tab-nav li a").eq(index).trigger('click');
 
         });
     }
-    Fixed.prototype.scrollHandler = function() {
-        var timer;
-        var _this = this;
-        return function() {
-            if (timer) {
-                window.clearTimeout(timer);
-            }
-            timer = window.setTimeout(function() {
-                var scrollTop = $(document).scrollTop(),
-                    offset = scrollTop - _this._initOffsetTop;
-                if (offset > 0) {
-                    _this.targetDom.animate({
-                        "top": offset+150 + "px"
-                    }, 500);
-                } else {
-                    _this.targetDom.animate({
-                        "top": 0
-                    }, 500);
-                }
-            }, 300);
-        };
-    }
+   
     Fixed.prototype.initItem = function() {
-        var cityList = $('.m-tab');
+        var cityList = $('.js-tab-nav li a');
         var cites = [];
-        var offset;
+        var offsetTop= $('.nav-title').offset().top;
         cityList.each(function(index, item) {
-            offset = $(this).offset().top - 150;
-            cites.push('<li class="item"><a href="javascript:;" data-offset="' + offset + '">' + $(this).attr('data-name') +'</a>' );
-            if(index != cityList.length - 1){
-                cites.push('<span class="after-bg"></span>');
-            }
-            cites.push('</li>');
+            var cur = "";
+            (index === 0) ? cur = 'cur' : cur = '';
+            
+            cites.push('<li class="item '+cur+'" data-offsettop="'+offsetTop+'" data-index="'+index+'"><a href="javascript:;">'+$(this).html()+'</a></li>');
+
         });
         $('.js-access-nav').html(cites.join(''))
     }
@@ -102,34 +80,26 @@ var fixed = new Fixed({
         curPanelItem.removeClass(this.disNone);
 
         loadTabImg(curPanelItem);
+
+        swichAccess(index);
     }
     window.Swichable = Swichable;
 })();
 function loadTabImg($curPanelItem){
-    var imgs = $curPanelItem.find('.pic-wrap .pic');
+    var imgs = $curPanelItem.find('.img_box img');
     imgs.each(function(index,item){
         $(this).attr('src',$(this).attr('data-original'));
     });
 }
-new Swichable({
-    tablist: ".js-tab-nav-1",
-    panellist: ".js-tab-list-1"
+function swichAccess(index){
+    $('.js-access-nav li').removeClass('cur').eq(index).addClass('cur');
+}
+var swich = new Swichable({
+    tablist: ".js-tab-nav",
+    panellist: ".js-tab-list"
 });
 
-new Swichable({
-    tablist: ".js-tab-nav-2",
-    panellist: ".js-tab-list-2"
-});
 
-new Swichable({
-    tablist: ".js-tab-nav-3",
-    panellist: ".js-tab-list-3"
-});
-
-new Swichable({
-    tablist: ".js-tab-nav-4",
-    panellist: ".js-tab-list-4"
-});
 /**
  $("img").lazyload({
             effect : "fadeIn"
