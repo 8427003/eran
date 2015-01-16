@@ -1,22 +1,38 @@
 var gulp = require('gulp'),
-    autoprefixer = require('gulp-autoprefixer'),
-    uglify = require('gulp-uglify'),
-    browserify = require('gulp-browserify'),
-    minifyCSS = require('gulp-minify-css'),
-    sass = require('gulp-sass'),
-    rename = require("gulp-rename"),
-    livereload = require('gulp-livereload'),
-    fileinclude = require('gulp-file-include'),
-    merge = require('merge-stream'),
-    sourcemaps = require('gulp-sourcemaps'),
+
+    //template
     template = require('gulp-template'),
     concat = require('gulp-concat'),
-    sprite = require('css-sprite').stream,
-    replace = require('gulp-replace'),
-    beautify = require('gulp-beautify'),
     inject = require('gulp-inject'),
-    htmlPrettify = require('gulp-html-prettify'),
-    del = require('del');
+    replace = require('gulp-replace'),
+    fileinclude = require('gulp-file-include'),
+
+    //js
+    browserify = require('gulp-browserify'),
+    jsbeautify = require('gulp-beautify'),
+    uglify = require('gulp-uglify'),
+    sourcemaps = require('gulp-sourcemaps'),
+    jshint = require('gulp-jshint'),
+    stylish = require('jshint-stylish'),
+    notify = require('gulp-notify'),
+
+    //css
+    autoprefixer = require('gulp-autoprefixer'),
+    cssbeautify = require('gulp-cssbeautify'),
+    sass = require('gulp-sass'),
+    minifyCSS = require('gulp-minify-css'),
+
+    //html
+    htmlbeautify = require('gulp-html-prettify'),
+
+    //img
+    sprite = require('css-sprite').stream,
+
+    //util
+    rename = require("gulp-rename"),
+    del = require('del'),
+    merge = require('merge-stream'),
+    livereload = require('gulp-livereload');
 
 
 ////////////////////////////////////////////////global setting start////////////////////////////////
@@ -75,7 +91,7 @@ gulp.task('html-dev', ['js-dev', 'css-dev'], function() {
             prefix: '@@',
             basepath: '@file'
         }))
-        .pipe(htmlPrettify())
+        .pipe(htmlbeautify())
         .pipe(inject(gulp.src([DEV_DEST_PATH + '/index.css']), {
             starttag: '<!-- inject:css -->',
             transform: function(filePath, file) {
@@ -98,7 +114,24 @@ gulp.task('html-dev', ['js-dev', 'css-dev'], function() {
 gulp.task('js-dev', function() {
     return gulp.src('./src/js/index.js')
         .pipe(browserify())
-        .pipe(beautify())
+        .pipe(jsbeautify({
+            indentSize: 4
+        }))
+        .pipe(jshint({asi:true}))//不检测分号
+        .pipe(jshint.reporter(stylish))
+        // Use gulp-notify as jshint reporter
+        .pipe(notify(function(file) {
+            if (file.jshint.success) {
+                // Don't show something if success
+                return false;
+            }
+            var errors = file.jshint.results.map(function(data) {
+                if (data.error) {
+                    return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+                }
+            }).join("\n");
+            return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
+        }))
         .pipe(gulp.dest(DEV_DEST_PATH));
 });
 
@@ -108,6 +141,7 @@ gulp.task('css-dev', function() {
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
         }))
+        .pipe(cssbeautify())
         .pipe(gulp.dest(DEV_DEST_PATH))
 });
 
@@ -178,6 +212,7 @@ gulp.task('html-publish', ['_publish-temp', 'css-publish', 'js-publish'], functi
         }));
     }
 
+    //类似插件gulp-smoosher；
     if (!IS_JS_OUT_LINK) {
         target.pipe(inject(gulp.src([PUBLISH_DEST_PATH + '/index.min.js']), {
             starttag: '<!-- inject:js -->',
