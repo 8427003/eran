@@ -1,3 +1,4 @@
+/**
 var $ = require('./lib/jquery.js');
 (function() {
     function Fixed(args) {
@@ -98,13 +99,14 @@ var swich = new Swichable({
     tablist: ".js-tab-nav",
     panellist: ".js-tab-list"
 });
-
+**/
 
 /**
  $("img").lazyload({
             effect : "fadeIn"
         });
        **/
+      /**
 var ie6 = navigator.userAgent.indexOf("MSIE 6.0") > 0;
 if(ie6){
     function IE6Handler(){
@@ -117,4 +119,4 @@ if(ie6){
     IE6Handler();
     $(window).on('scroll',IE6Handler );
 }
-           
+          **/ 

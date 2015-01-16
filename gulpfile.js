@@ -8,11 +8,14 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     fileinclude = require('gulp-file-include'),
     merge = require('merge-stream'),
-    runSequence = require('run-sequence'),
+    sourcemaps = require('gulp-sourcemaps'),
     template = require('gulp-template'),
     concat = require('gulp-concat'),
     sprite = require('css-sprite').stream,
     replace = require('gulp-replace'),
+    beautify = require('gulp-beautify'),
+    inject = require('gulp-inject'),
+    htmlPrettify = require('gulp-html-prettify'),
     del = require('del');
 
 
@@ -23,10 +26,14 @@ var DEV_DEST_PATH = './dist/dev'; //开发模式下生成的目标文件目录
 var PUBLISH_DEST_PATH = './dist/publish'; //发布模式下生成的目标文件目录
 var PUBLISH_TEMP_DEST_PATH = './dist/publish_temp'; //发布模式下生成的目标文件目录
 
-var DEFAULT_TASKS = ['html-dev', 'js-dev', 'css-dev', 'image-dev','watch'];
-var DEV_TASKS = ['html-dev', 'js-dev', 'css-dev', 'image-dev'];//与default一样，少了一个watch
-var PUBLISH_TEMP_TASKS = ['dev', 'html-publish-temp', 'js-publish-temp', 'css-publish-temp', 'image-publish-temp'];
-var PUBLISH_TASKS = ['_publish-temp', 'html-publish', 'js-publish', 'css-publish', 'image-publish'];
+var DEFAULT_TASKS = ['html-dev', 'js-dev', 'css-dev', 'image-dev', 'watch'];
+var DEV_TASKS = ['js-dev', 'css-dev', 'image-dev', 'html-dev']; //与default一样，少了一个watch
+var PUBLISH_TEMP_TASKS = ['dev', 'js-publish-temp', 'css-publish-temp', 'image-publish-temp', 'html-publish-temp'];
+var PUBLISH_TASKS = ['_publish-temp', 'js-publish', 'css-publish', 'image-publish', 'html-publish'];
+
+var IS_CSS_OUT_LINK = false;
+var IS_JS_OUT_LINK = false;
+
 //default is also named dev 
 gulp.task('default', DEFAULT_TASKS, function(cb) {
     cb();
@@ -42,13 +49,13 @@ gulp.task('_publish-temp', PUBLISH_TEMP_TASKS, function(cb) {
 });
 
 //依赖于_publish-temp任务执行
-gulp.task('publish', PUBLISH_TASKS,function(cb) {
+gulp.task('publish', PUBLISH_TASKS, function(cb) {
     //发布完成后删除临时文件夹
-    del(PUBLISH_TEMP_DEST_PATH,cb);
+    del(PUBLISH_TEMP_DEST_PATH, cb);
 });
 
 //用于开发环境下，文件更改时时编译，且时时刷新浏览器
-gulp.task('watch',DEV_TASKS function() {
+gulp.task('watch', DEV_TASKS, function() {
     // Create LiveReload server
     livereload.listen();
     // Watch any files in dist/, reload on change
@@ -62,11 +69,28 @@ gulp.task('watch',DEV_TASKS function() {
 
 /////////////////////////////// dev start/////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
-gulp.task('html-dev', function() {
+gulp.task('html-dev', ['js-dev', 'css-dev'], function() {
     return gulp.src(['./src/html/index.html'])
         .pipe(fileinclude({
             prefix: '@@',
             basepath: '@file'
+        }))
+        .pipe(htmlPrettify())
+        .pipe(inject(gulp.src([DEV_DEST_PATH + '/index.css']), {
+            starttag: '<!-- inject:css -->',
+            transform: function(filePath, file) {
+                // return file contents as string
+                console.log('<link href="index.css" rel="stylesheet">');
+                return '<link href="index.css" rel="stylesheet">';
+            }
+        }))
+        .pipe(inject(gulp.src([DEV_DEST_PATH + '/index.js']), {
+            starttag: '<!-- inject:js -->',
+            transform: function(filePath, file) {
+                // return file contents as string
+                console.log('<script src="index.js"></script>');
+                return '<script src="index.js"></script>';
+            }
         }))
         .pipe(gulp.dest(DEV_DEST_PATH));
 });
@@ -74,6 +98,7 @@ gulp.task('html-dev', function() {
 gulp.task('js-dev', function() {
     return gulp.src('./src/js/index.js')
         .pipe(browserify())
+        .pipe(beautify())
         .pipe(gulp.dest(DEV_DEST_PATH));
 });
 
@@ -135,21 +160,45 @@ gulp.task('image-publish-temp', ['dev'], function() {
 
 
 
-gulp.task('html-publish', ['_publish-temp'], function() {
+gulp.task('html-publish', ['_publish-temp', 'css-publish', 'js-publish'], function() {
     var tempHtml = PUBLISH_TEMP_DEST_PATH + '/index.temp.html';
-    return gulp.src(tempHtml)
+    var target = gulp.src(tempHtml)
         .pipe(replace(/\.\/images\//g, 'http://quarzz.com/'))
-        //output
-        .pipe(rename('index.min.html'))
-        .pipe(gulp.dest(PUBLISH_DEST_PATH));
+        .pipe(htmlPrettify())
+        .pipe(rename('index.min.html'));
+
+    if (!IS_CSS_OUT_LINK) {
+        target.pipe(inject(gulp.src([PUBLISH_DEST_PATH + '/index.min.css']), {
+            starttag: '<!-- inject:css -->',
+            transform: function(filePath, file) {
+                console.log(filePath)
+                    // return file contents as string
+                return '<style>' + file.contents.toString('utf8') + '</style>'
+            }
+        }));
+    }
+
+    if (!IS_JS_OUT_LINK) {
+        target.pipe(inject(gulp.src([PUBLISH_DEST_PATH + '/index.min.js']), {
+            starttag: '<!-- inject:js -->',
+            transform: function(filePath, file) {
+                console.log(filePath)
+                    // return file contents as string
+                return '<script>' + file.contents.toString('utf8') + '</script>';
+            }
+        }));
+    }
+
+    return target.pipe(gulp.dest(PUBLISH_DEST_PATH));
 });
+
 gulp.task('css-publish', ['_publish-temp'], function() {
     var tempCss = PUBLISH_TEMP_DEST_PATH + '/index.temp.css';
     var spriteCss = PUBLISH_TEMP_DEST_PATH + '/sprite/sprite.css';
 
     return gulp.src([tempCss, spriteCss])
         .pipe(concat('index.min.css'))
-        //.pipe(minifyCSS())
+        .pipe(minifyCSS())
         .pipe(replace(/\.\/images\//g, 'http://quarzz.com/'))
         //output
         .pipe(gulp.dest(PUBLISH_DEST_PATH));
@@ -157,9 +206,13 @@ gulp.task('css-publish', ['_publish-temp'], function() {
 gulp.task('js-publish', ['_publish-temp'], function() {
     var tempJs = PUBLISH_TEMP_DEST_PATH + '/index.temp.js';
     return gulp.src(tempJs)
+        .pipe(sourcemaps.init())
+        .pipe(concat('index.min.js')) //当uglify作为第一个插件时，会不能正常产生maps，so fall back，让勉强加了一个concat在前面, 解决见https://github.com/floridoo/gulp-sourcemaps/issues/37#issuecomment-60062922
         .pipe(uglify())
+        .pipe(sourcemaps.write('./', {
+            debug: true
+        }))
         //output
-        .pipe(rename('index.min.js'))
         .pipe(gulp.dest(PUBLISH_DEST_PATH));
 });
 gulp.task('image-publish', ['_publish-temp'], function() {
