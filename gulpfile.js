@@ -37,12 +37,12 @@ var gulp = require('gulp'),
 
 ////////////////////////////////////////////////global setting start////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////    
-
+var IMG_BASE_PATH = 'http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150121/';
 var DEV_DEST_PATH = './dist/dev'; //开发模式下生成的目标文件目录
 var PUBLISH_DEST_PATH = './dist/publish'; //发布模式下生成的目标文件目录
 var PUBLISH_TEMP_DEST_PATH = './dist/publish_temp'; //发布模式下生成的目标文件目录
 
-var DEFAULT_TASKS = ['html-dev', 'js-dev', 'css-dev', 'image-dev', 'watch'];
+var DEFAULT_TASKS = ['js-dev', 'css-dev', 'image-dev', 'html-dev', 'watch'];
 var DEV_TASKS = ['js-dev', 'css-dev', 'image-dev', 'html-dev']; //与default一样，少了一个watch
 var PUBLISH_TEMP_TASKS = ['dev', 'js-publish-temp', 'css-publish-temp', 'image-publish-temp', 'html-publish-temp'];
 var PUBLISH_TASKS = ['_publish-temp', 'js-publish', 'css-publish', 'image-publish', 'html-publish'];
@@ -182,9 +182,11 @@ gulp.task('css-publish-temp', ['dev'], function() {
 gulp.task('image-publish-temp', ['dev'], function() {
     return gulp.src(DEV_DEST_PATH + '/images/*.png')
         .pipe(sprite({
-            name: 'sprite',
+            name: 'sprite-3',
             style: 'sprite.css',
             cssPath: './images',
+            orientation:'binary-tree',
+            prefix:'icon',
             //retina:true,
             processor: 'css'
         }))
@@ -197,8 +199,9 @@ gulp.task('image-publish-temp', ['dev'], function() {
 gulp.task('html-publish', ['_publish-temp', 'css-publish', 'js-publish'], function() {
     var tempHtml = PUBLISH_TEMP_DEST_PATH + '/index.temp.html';
     var target = gulp.src(tempHtml)
-        .pipe(replace(/\.\/images\//g, 'http://quarzz.com/'))
-        .pipe(htmlPrettify())
+        .pipe(replace(/\.\/images\//g, IMG_BASE_PATH))
+        .pipe(replace(/images\//g, IMG_BASE_PATH))
+        .pipe(htmlbeautify())
         .pipe(rename('index.min.html'));
 
     if (!IS_CSS_OUT_LINK) {
@@ -229,12 +232,13 @@ gulp.task('html-publish', ['_publish-temp', 'css-publish', 'js-publish'], functi
 
 gulp.task('css-publish', ['_publish-temp'], function() {
     var tempCss = PUBLISH_TEMP_DEST_PATH + '/index.temp.css';
-    var spriteCss = PUBLISH_TEMP_DEST_PATH + '/sprite/sprite.css';
+    var spriteCss = PUBLISH_TEMP_DEST_PATH + '/sprite/sprite*.css';
 
     return gulp.src([tempCss, spriteCss])
         .pipe(concat('index.min.css'))
-        .pipe(minifyCSS())
-        .pipe(replace(/\.\/images\//g, 'http://quarzz.com/'))
+        //.pipe(minifyCSS())
+        .pipe(replace(/\.\/images\//g, IMG_BASE_PATH))
+        .pipe(replace(/images\//g, IMG_BASE_PATH))
         //output
         .pipe(gulp.dest(PUBLISH_DEST_PATH));
 });
@@ -253,7 +257,7 @@ gulp.task('js-publish', ['_publish-temp'], function() {
 gulp.task('image-publish', ['_publish-temp'], function() {
     var tempSprites = PUBLISH_TEMP_DEST_PATH + '/sprite/*.png';
     return gulp.src(tempSprites)
-        .pipe(gulp.dest(PUBLISH_DEST_PATH + '/sprite'));
+        .pipe(gulp.dest(PUBLISH_DEST_PATH + '/images'));
 });
 
 /////////////////////////////// publish end //////////////////////////////

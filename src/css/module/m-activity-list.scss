@@ -1,0 +1,99 @@
+.m-activity-list {} .m-activity-list .main {
+    width: 980px;
+    margin: 0 auto;
+}
+.m-activity-list .list-wrap {
+    width: 980px;
+    overflow: hidden;
+}
+.m-activity-list .list {
+    width: 1000px;
+}
+.m-activity-list .list .item {
+    float: left;
+    display: inline;
+    width: 230px;
+    overflow: hidden;
+    height: auto;
+    margin-right: 20px;
+}
+.m-activity-list .list .item-inner {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.m-activity-list .list .pic-wrap {
+    font-size: 0;
+    position: relative;
+}
+.m-activity-list .list img {
+    width: 230px;
+    height: 320px;
+    display: inline-block;
+}
+.m-activity-list .list .txt-group {
+    width: 211px;
+    height: 125px;
+    position: absolute;
+    left: 0;
+    bottom: 63px;
+}
+.m-activity-list .list .abs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 211px;
+    z-index: 1;
+    height: 125px;
+    background-color: #333;
+    opacity: .9;
+    fliter: alpha(opacity=90);
+}
+.m-activity-list .list .txt-wrap {
+    position: relative;
+    left: 0;
+    top: 0;
+    padding: 10px 8px 0px;
+    z-index: 2;
+}
+.m-activity-list .list .txt-title {
+    overflow: hidden;
+    width: 100%;
+    height: 32px;
+    text-align: left;
+    font: 30px / 32px"Microsoft Yahei";
+    color: #ffffcc;
+}
+.m-activity-list .list .price-desc {
+    padding-top: 5px;
+    font-size: 0;
+}
+.m-activity-list .list .price {
+    font: 30px/ 32px"Microsoft Yahei";
+    color: #ff9900;
+}
+.m-activity-list .list .s {
+    font: 18px /20px"Microsoft Yahei";
+    color: #ccc;
+    margin-right: 5px;
+}
+.m-activity-list .list .desc {
+    padding-top: 11px;
+    display: inline-block;
+    font: 18px /20px"Microsoft Yahei";
+    color: #ff9933;
+}
+.m-activity-list .list .desc.mr5 {
+    margin-right: 5px;
+}
+.m-activity-list .list .discount {
+    padding-top: 3px;
+}
+.m-activity-list .list .discount .num {
+    font: 36px/ 38px"Microsoft Yahei";
+    color: #ff9900;
+}
+.m-activity-list .list .discount .u {
+    font: 24px/ 26px"Microsoft Yahei";
+    color: #ffffcc;
+}

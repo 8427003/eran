@@ -6,22 +6,34 @@
     <title></title>
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <!-- inject:css -->
-    <!-- endinject -->
-    @@include ('./script/ie6-png-fix.html')
-
 </head>
 
 <body>
     <!--modules-->
-    <div class='m-yearend'>
+    <!-- inject:css -->
+    <!-- endinject -->
+    @@include ('./script/ie6-png-fix.html')
+    <div class='m-choujiang'>
+        <!--公共登录框-->
+        <div id="QunarPopBox"></div>
+        <!--/公共登录框-->
         @@include ('./module/m-banner.html')
-        <div class="main">
-                @@include ('./module/m-tab-1.html')
-
-                @@include ('./module/m-access.html')
-        </div>
+        @@include ('./module/m-access.html')
+        @@include ('./module/m-rotate.html')
+        @@include ('./module/m-slide.html')
+        @@include ('./module/m-tab-title-1.html')
+        @@include ('./module/m-tab-nav-1.html')
+        @@include ('./module/m-tab-list-1.html')
+        @@include ('./module/m-tab-title-2.html')
+        @@include ('./module/m-tab-nav-2.html')
+        @@include ('./module/m-tab-list-2.html')
+        @@include ('./module/m-tab-title-3.html')
+        @@include ('./module/m-activity-list.html')
+        @@include ('./module/m-adv.html')
+        @@include ('./module/m-instruction.html')
+        @@include ('./module/m-bottom-logo.html')
     </div>
+    <script src="http://qunarzz.com/jquery/prd/jquery-1.7.2.js"></script>
     <!--/modules-->
     <!-- inject:js -->
     <!-- endinject -->

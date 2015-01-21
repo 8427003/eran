@@ -1,0 +1,43 @@
+.m-tab-nav {} .m-tab-nav .nav-wrap {
+    width: 980px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.m-tab-nav .tab-nav {
+    width: 985px;
+    table-layout: fixed
+}
+.m-tab-nav .tab-nav .item {
+    height: 40px;
+    font-size: 0;
+}
+.m-tab-nav .tab-nav .item-inner {
+    padding-right: 5px;
+    height: 100%;
+}
+
+.m-tab-nav .tab-nav .more a,
+.m-tab-nav .tab-nav .item a {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    background: #eab440;
+    text-align: center;
+    font: 14px / 40px"Microsoft Yahei";
+    color: #490000;
+}
+
+.m-tab-nav .tab-nav .more{
+    height: 40px;
+    font-size: 0;
+}
+.m-tab-nav .tab-nav .more a {
+    color: #fff;
+}
+.m-tab-nav .tab-nav .item.cur a,
+.m-tab-nav .tab-nav .more.cur a,
+.m-tab-nav .tab-nav .item a:hover,
+.m-tab-nav .tab-nav .more:hover,
+{
+    background: #fae25d;
+}
