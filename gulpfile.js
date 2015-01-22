@@ -37,20 +37,24 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload');
 
 
+
+
+
+
+var IMG_BASE_PATH = 'http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150121/';
+var IS_CSS_OUT_LINK = false;
+var IS_JS_OUT_LINK = false;
+
+
 ////////////////////////////////////////////////global setting start////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////    
-var IMG_BASE_PATH = 'http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150121/';
 var DEV_DEST_PATH = './dist/dev'; //开发模式下生成的目标文件目录
 var PUBLISH_DEST_PATH = './dist/publish'; //发布模式下生成的目标文件目录
-var PUBLISH_TEMP_DEST_PATH = './dist/publish_temp'; //发布模式下生成的目标文件目录
 
 var DEFAULT_TASKS = ['clean-dev','js-dev', 'css-dev', 'image-dev', 'html-dev', 'watch'];
 var DEV_TASKS = ['clean-dev','js-dev', 'css-dev', 'image-dev', 'html-dev']; //与default一样，少了一个watch
-var PUBLISH_TEMP_TASKS = ['dev', 'js-publish-temp', 'css-publish-temp', 'image-publish-temp', 'html-publish-temp'];
-var PUBLISH_TASKS = ['_publish-temp', 'js-publish', 'css-publish', 'image-publish', 'html-publish'];
+var PUBLISH_TASKS = ['dev','js-publish', 'css-publish', 'image-publish', 'html-publish'];
 
-var IS_CSS_OUT_LINK = false;
-var IS_JS_OUT_LINK = false;
 
 //default is also named dev 
 gulp.task('default', DEFAULT_TASKS, function(cb) {
@@ -61,15 +65,12 @@ gulp.task('dev', DEV_TASKS, function(cb) {
     cb();
 });
 
-//依赖于dev任务执行
-gulp.task('_publish-temp', PUBLISH_TEMP_TASKS, function(cb) {
-    cb();
-});
-
 //依赖于_publish-temp任务执行
 gulp.task('publish', PUBLISH_TASKS, function(cb) {
-    //发布完成后删除临时文件夹
-    del(PUBLISH_TEMP_DEST_PATH, cb);
+
+});
+gulp.task('reload',['dev'],function(){
+    livereload.changed();
 });
 
 //用于开发环境下，文件更改时时编译，且时时刷新浏览器
@@ -77,11 +78,11 @@ gulp.task('watch', DEV_TASKS, function() {
     // Create LiveReload server
     livereload.listen();
     // Watch any files in dist/, reload on change
-    gulp.watch('src/**', ['dev'], function() {
-        console.log(11111)
+    gulp.watch('src/**', ['dev','reload'], function() {
+    
     });
-});
 
+});
 ////////////////////////////////////////////////global setting end////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -182,6 +183,9 @@ gulp.task('image-dev',['clean-dev'], function() {
         }))
         .pipe(gulp.dest(DEV_DEST_PATH + '/images'))
     );
+    streams.push(gulp.src(sourceDir + '/*.jpg')
+        .pipe(gulp.dest(DEV_DEST_PATH + '/images'))
+    );
     return merge(streams);
 });
 /////////////////////////////// dev end /////////////////////////////////
@@ -191,48 +195,11 @@ gulp.task('image-dev',['clean-dev'], function() {
 
 /////////////////////////////// publish start ////////////////////////////
 /////////////////////////////////////////////////////////////////////////
-gulp.task('html-publish-temp', ['dev'], function() {
-    return gulp.src([DEV_DEST_PATH + '/index.html'])
-        //output
-        .pipe(rename('index.temp.html'))
-        .pipe(gulp.dest(PUBLISH_TEMP_DEST_PATH));
+gulp.task('clean-publish', function() {
+    del.sync(PUBLISH_DEST_PATH);
 });
-
-
-gulp.task('js-publish-temp', ['dev'], function() {
-    return gulp.src(DEV_DEST_PATH + '/index.js')
-        //output
-        .pipe(rename('index.temp.js'))
-        .pipe(gulp.dest(PUBLISH_TEMP_DEST_PATH));
-});
-
-gulp.task('css-publish-temp', ['dev'], function() {
-    return gulp.src(DEV_DEST_PATH + '/index.css')
-        .pipe(rename('index.temp.css'))
-        //output
-        .pipe(gulp.dest(PUBLISH_TEMP_DEST_PATH));
-});
-
-gulp.task('image-publish-temp', ['dev'], function() {
-    return gulp.src(DEV_DEST_PATH + '/images/*.png')
-        .pipe(sprite({
-            name: 'sprite-3',
-            style: 'sprite.css',
-            cssPath: './images',
-            orientation: 'binary-tree',
-            prefix: 'icon',
-            //retina:true,
-            processor: 'css'
-        }))
-        .pipe(gulp.dest(PUBLISH_TEMP_DEST_PATH + '/sprite'));
-});
-
-
-
-
-gulp.task('html-publish', ['_publish-temp', 'css-publish', 'js-publish'], function() {
-    var tempHtml = PUBLISH_TEMP_DEST_PATH + '/index.temp.html';
-    var target = gulp.src(tempHtml)
+gulp.task('html-publish', ['clean-publish','dev','css-publish', 'js-publish'], function() {
+    var target = gulp.src(DEV_DEST_PATH+'/index.html')
         .pipe(replace(/\.\/images\//g, IMG_BASE_PATH))
         .pipe(replace(/images\//g, IMG_BASE_PATH))
         .pipe(htmlbeautify())
@@ -264,23 +231,19 @@ gulp.task('html-publish', ['_publish-temp', 'css-publish', 'js-publish'], functi
     return target.pipe(gulp.dest(PUBLISH_DEST_PATH));
 });
 
-gulp.task('css-publish', ['_publish-temp'], function() {
-    var tempCss = PUBLISH_TEMP_DEST_PATH + '/index.temp.css';
-    var spriteCss = PUBLISH_TEMP_DEST_PATH + '/sprite/sprite*.css';
-
-    return gulp.src([tempCss, spriteCss])
-        .pipe(concat('index.min.css'))
+gulp.task('css-publish', ['clean-publish','dev'],function() {
+    return gulp.src([DEV_DEST_PATH+'/index.css'])
         .pipe(minifyCSS({
             compatibility: 'ie7'
         }))
         .pipe(replace(/\.\/images\//g, IMG_BASE_PATH))
         .pipe(replace(/images\//g, IMG_BASE_PATH))
+        .pipe(rename('index.min.css'))
         //output
         .pipe(gulp.dest(PUBLISH_DEST_PATH));
 });
-gulp.task('js-publish', ['_publish-temp'], function() {
-    var tempJs = PUBLISH_TEMP_DEST_PATH + '/index.temp.js';
-    return gulp.src(tempJs)
+gulp.task('js-publish', ['clean-publish','dev'],function() {
+    return gulp.src(DEV_DEST_PATH+'/index.js')
         .pipe(sourcemaps.init())
         .pipe(concat('index.min.js')) //当uglify作为第一个插件时，会不能正常产生maps，so fall back，让勉强加了一个concat在前面, 解决见https://github.com/floridoo/gulp-sourcemaps/issues/37#issuecomment-60062922
         .pipe(uglify())
@@ -290,9 +253,8 @@ gulp.task('js-publish', ['_publish-temp'], function() {
         //output
         .pipe(gulp.dest(PUBLISH_DEST_PATH));
 });
-gulp.task('image-publish', ['_publish-temp'], function() {
-    var tempSprites = PUBLISH_TEMP_DEST_PATH + '/sprite/*.png';
-    return gulp.src(tempSprites)
+gulp.task('image-publish', ['clean-publish','dev'],function() {
+    return gulp.src([DEV_DEST_PATH+'/images/*.jpg',DEV_DEST_PATH+'/images/*.png'])
         .pipe(gulp.dest(PUBLISH_DEST_PATH + '/images'));
 });
 
