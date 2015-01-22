@@ -786,11 +786,6 @@ body {
     filter: alpha(opacity=0);
 }
 
-body {
-    width: auto !important;
-    min-width: 1308px !important;
-}
-
 .m-banner {
     width: 100%;
     overflow: hidden;
@@ -1652,11 +1647,19 @@ body {
 }
 
 .m-access {
-    position: absolute;
-    top: 40px;
+  /**
+    position:absolute;
+    top:40px; 
+    z-index:999;
+    right:-167px;
+    margin-left:503px;
+    **/
+    position: fixed;
     z-index: 999;
-    right: -167px;
-    margin-left: 503px;
+    width: 172px;
+    left: 50%;
+    margin-left: 500px;
+    bottom: 100px;
 }
 
 .m-access .inner {
@@ -1711,7 +1714,6 @@ body {
 
 .m-dialog {
     width: 765px;
-    height: 353px;
 }
 
 .m-dialog .panel-abs-wrap {
@@ -1830,17 +1832,17 @@ body {
 }
 
 .m-dialog .erwm-wrap {
-    padding-top: 8px;
+    padding-top: 36px;
     text-align: center;
     position: relative;
 }
 
 .m-dialog .erwm-wrap .erwm {
     font-size: 0;
-    width: 132px;
-    height: 132px;
+    width: 161px;
+    height: 161px;
     position: relative;
-    left: 68px;
+    left: 0;
     top: 0;
 }
 
@@ -1851,6 +1853,16 @@ body {
     display: inline-block;
     width: 136px;
     height: 94px;
+}
+
+.m-dialog .erwm-wrap .txt-saos {
+    font: 14px/14px "Microsoft Yahei";
+    color: #000;
+    display: inline-block;
+    width: 16px;
+    position: relative;
+    left: 0;
+    top: -5px;
 }
 
 .m-dialog .erwm-wrap .ani {

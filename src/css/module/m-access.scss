@@ -4,12 +4,19 @@
     margin:0 auto;
 }
 .m-access {
+    /**
     position:absolute;
     top:40px; 
     z-index:999;
     right:-167px;
     margin-left:503px;
-    
+    **/
+    position: fixed;
+    z-index: 999;
+    width: 172px;
+    left: 50%;
+    margin-left: 500px;
+    bottom: 100px
 } 
 .m-access .inner {
     width: 154px;

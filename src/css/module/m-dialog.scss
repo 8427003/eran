@@ -1,13 +1,12 @@
 .m-dialog {
     width: 765px;
-    height: 353px;
 }
 .m-dialog .panel-abs-wrap {
     padding: 8px;
     width: 749px;
     height: 337px;
     background: url(./images/dialog-abs.png);
-      _background:none;
+    _background: none;
     _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./images/dialog-abs.png', sizingMethod='crop');
     border-radius: 3px;
 }
@@ -102,16 +101,16 @@
     color: #666;
 }
 .m-dialog .erwm-wrap {
-    padding-top: 8px;
+    padding-top: 36px;
     text-align: center;
     position: relative;
 }
 .m-dialog .erwm-wrap .erwm {
     font-size: 0;
-    width: 132px;
-    height: 132px;
+    width: 161px;
+    height: 161px;
     position: relative;
-    left: 68px;
+    left: 0;
     top: 0;
 }
 .m-dialog .erwm-wrap .sao {
@@ -124,12 +123,21 @@
     //background: url(./images/sao.png) no-repeat;
 
 }
+.m-dialog .erwm-wrap .txt-saos {
+    font: 14px / 14px "Microsoft Yahei";
+    color: #000;
+    display:inline-block;
+    width:16px;
+    position:relative;
+    left:0;
+    top:-5px;
+}
 .m-dialog .erwm-wrap .ani {
     top: 17px;
     right: 62px;
 }
-
-.js-go-sales-hotel,.js-go-footer{
+.js-go-sales-hotel,
+.js-go-footer {
     color: #ff6600;
-    cursor:pointer;
+    cursor: pointer;
 }

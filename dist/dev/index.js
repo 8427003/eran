@@ -525,30 +525,49 @@
                         });
                     });
                 }
-
                 Fixed.prototype.scrollHandler = function () {
-                    var timer;
-                    var _this = this;
+                    var _this = this.targetDom[0];
+                    var _doc = $(document);
                     return function () {
-                        if (timer) {
-                            window.clearTimeout(timer);
-                        }
-                        timer = window.setTimeout(function () {
-                            var scrollTop = $(document).scrollTop(),
-                                offset = scrollTop - _this._initOffsetTop;
+                        var scrollTop = _doc.scrollTop();
+                        var isOffset = scrollTop - 400 > 0;
+                        var isNone = $(_this).hasClass('g-none');
 
-                            if (offset > 0) {
-                                _this.targetDom.animate({
-                                    "top": offset + "px"
-                                }, 500);
-                            } else {
-                                _this.targetDom.animate({
-                                    "top": '40px'
-                                }, 500);
-                            }
-                        }, 300);
-                    };
+                        if (isOffset && isNone) {
+                            $(_this).removeClass("g-none");
+                        } else if (!isOffset && !isNone) {
+                            $(_this).addClass("g-none");
+                        }
+                    }
                 }
+                /**
+                 Fixed.prototype.scrollHandler = function() {
+                 var timer;
+                 var _this = this;
+                 return function() {
+                 
+                 if (timer) {
+                 window.clearTimeout(timer);
+                 }
+                 timer = window.setTimeout(function() {
+                 var scrollTop = $(document).scrollTop(),
+                 offset = scrollTop - _this._initOffsetTop;
+                 
+                 if (offset > 0) {
+                 _this.targetDom.animate({
+                 "top": offset + "px"
+                 }, 500);
+                 } else {
+                 _this.targetDom.animate({
+                 "top": '40px'
+                 }, 500);
+                 }
+                 }, 300);
+                 
+                 
+                 };
+                 }
+                 **/
                 Fixed.prototype.initItem = function () {
                     var cityList = $('.js-accesss-item');
                     var cites = [];
@@ -628,21 +647,25 @@
              effect : "fadeIn"
              });
              **/
-            /**
-             /**
-             var ie6 = navigator.userAgent.indexOf("MSIE 6.0") > 0;
-             if(ie6){
-             function IE6Handler(){
-             var scrollTop       = $(document).scrollTop();
-             var clientHeight    = $(window).height();
-             var offsetHeight    = $(".js-accesss").height();
-             var offsetTop  = scrollTop + clientHeight - offsetHeight - 100 - 631;
-             $('.js-accesss').css({'top':offsetTop + "px","position":"absolute","bottom":"auto"});     
-             }
-             IE6Handler();
-             $(window).on('scroll',IE6Handler );
-             }
-             **/
+
+            var ie6 = navigator.userAgent.indexOf("MSIE 6.0") > 0;
+            if (ie6) {
+                function IE6Handler() {
+                    var scrollTop = $(document).scrollTop();
+                    var clientHeight = $(window).height();
+                    var offsetHeight = $(".js-accesss").height();
+                    var offsetTop = scrollTop + clientHeight - offsetHeight - 100 - 631;
+                    $('.js-accesss').css({
+                        'top': offsetTop + "px",
+                        "position": "absolute",
+                        "bottom": "auto"
+                    });
+                }
+                IE6Handler();
+                $(window).on('scroll', IE6Handler);
+            }
+
+
             $(function () {
                 var Slide = $('.slide-view').switchable({
                     putTriggers: 'appendTo',
@@ -666,6 +689,41 @@
             setTimeout(function () {
                 $('.icon-txt-big').removeClass('show-ant').addClass('swing');
             }, 4000);
+
+
+            var TOTAL_WIDTH = 1308;
+            var leftMainOffset = (TOTAL_WIDTH - 980) / 2;
+            var mainAccessOffset = 10;
+            var initLeft = $('.js-accesss').css('marginLeft');
+
+            $(window).on('resize', setAccessPosition).on('scroll', setAccessPosition);
+
+
+            function setAccessPosition() {
+                var winW = $(window).width();
+                var offsetLeft = $(document).scrollLeft();
+                var offsetWith = TOTAL_WIDTH - winW;
+
+                if (offsetWith > 0) {
+                    $('body').width(TOTAL_WIDTH); //body 最小宽度
+
+                    if (!ie6) {
+                        var left = 980 - (winW / 2 - leftMainOffset + offsetLeft);
+
+                        $('.js-accesss').css('marginLeft', left + mainAccessOffset);
+                    }
+
+                } else {
+                    $('body').width('auto');
+
+                    if (!ie6) {
+                        $('.js-accesss').css('marginLeft', initLeft);
+                    }
+
+
+                }
+            }
+
         }
 
     },
