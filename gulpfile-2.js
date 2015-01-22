@@ -32,6 +32,8 @@ var gulp = require('gulp'),
     rename = require("gulp-rename"),
     del = require('del'),
     merge = require('merge-stream'),
+    fs = require('fs'),
+    path = require('path'),
     livereload = require('gulp-livereload');
 
 
@@ -85,7 +87,7 @@ gulp.task('watch', DEV_TASKS, function() {
 
 /////////////////////////////// dev start/////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
-gulp.task('html-dev', ['js-dev', 'css-dev'], function() {
+gulp.task('html-dev', function() {
     return gulp.src(['./src/html/index.html'])
         .pipe(fileinclude({
             prefix: '@@',
@@ -117,26 +119,31 @@ gulp.task('js-dev', function() {
         .pipe(jsbeautify({
             indentSize: 4
         }))
-        .pipe(jshint({asi:true}))//不检测分号
-        .pipe(jshint.reporter(stylish))
-        // Use gulp-notify as jshint reporter
-        .pipe(notify(function(file) {
-            if (file.jshint.success) {
-                // Don't show something if success
-                return false;
-            }
-            var errors = file.jshint.results.map(function(data) {
-                if (data.error) {
-                    return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+        /**
+          .pipe(jshint({
+             asi: true
+        })) //不检测分号
+            .pipe(jshint.reporter(stylish))
+            // Use gulp-notify as jshint reporter
+            .pipe(notify(function(file) {
+                if (file.jshint.success) {
+                    // Don't show something if success
+                    return false;
                 }
-            }).join("\n");
-            return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
-        }))
+                var errors = file.jshint.results.map(function(data) {
+                    if (data.error) {
+                        return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+                    }
+                }).join("\n");
+                return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
+            }))
+           **/
         .pipe(gulp.dest(DEV_DEST_PATH));
 });
 
-gulp.task('css-dev', function() {
-    return gulp.src('./src/css/index.scss')
+gulp.task('css-dev', ['image-dev'], function() {
+    return gulp.src(['./src/css/index.scss', './dev/images/_sprite*.css'])
+        .pipe(concat('index.scss'));
         .pipe(sass())
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
@@ -146,8 +153,58 @@ gulp.task('css-dev', function() {
 });
 
 gulp.task('image-dev', function() {
-    return gulp.src('./src/images/*')
-        .pipe(gulp.dest(DEV_DEST_PATH + '/images'));
+    var sourceDir = './src/images',
+        strems = [],
+        pathName,
+        folder,
+        folders;
+
+    folders = fs.readdirSync(sourceDir);
+
+    folders.forEach(function(file) {
+        pathName = path.join(dir, file);
+
+        if (fs.statSync(pathName).isDirectory()) {
+            folder = file;
+            streams.push(
+                gulp.src(pathName + '/*.png')
+                .pipe(sprite({
+                    name: 'sprite-' + folder + '.png',
+                    style: '_sprite-' + folder + '.css',
+                    cssPath: '/images',
+                    prefix: folder,
+                    processor: 'css'
+                }))
+                .pipe(gulp.dest(DEV_DEST_PATH + '/images'))
+            );
+        }
+    });
+
+    streams.push(gulp.src(sourceDir + '/*.png')
+        .pipe(sprite({
+            name: 'sprite.png',
+            style: '_sprite.css',
+            cssPath: '/images',
+            prefix: 'icon',
+            processor: 'css'
+        }))
+        .pipe(gulp.dest(DEV_DEST_PATH + '/images'))
+    );
+    return merge(streams);
+});
+
+gulp.task('image-publish-temp', ['dev'], function() {
+    return gulp.src(DEV_DEST_PATH + '/images/**/*.png')
+        .pipe(sprite({
+            name: 'sprite-3',
+            style: 'sprite.css',
+            cssPath: './images',
+            orientation: 'binary-tree',
+            prefix: 'icon',
+            //retina:true,
+            processor: 'css'
+        }))
+        .pipe(gulp.dest(PUBLISH_TEMP_DEST_PATH + '/sprite'));
 });
 
 /////////////////////////////// dev end /////////////////////////////////
@@ -185,8 +242,8 @@ gulp.task('image-publish-temp', ['dev'], function() {
             name: 'sprite-3',
             style: 'sprite.css',
             cssPath: './images',
-            orientation:'binary-tree',
-            prefix:'icon',
+            orientation: 'binary-tree',
+            prefix: 'icon',
             //retina:true,
             processor: 'css'
         }))
@@ -237,7 +294,7 @@ gulp.task('css-publish', ['_publish-temp'], function() {
     return gulp.src([tempCss, spriteCss])
         .pipe(concat('index.min.css'))
         .pipe(minifyCSS({
-            compatibility:'ie7'
+            compatibility: 'ie7'
         }))
         .pipe(replace(/\.\/images\//g, IMG_BASE_PATH))
         .pipe(replace(/images\//g, IMG_BASE_PATH))
