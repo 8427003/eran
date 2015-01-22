@@ -1,0 +1,16 @@
+.icon {
+  background-image: url('/images/sprite-icon.png');
+}
+
+.icon-txt-small {
+  background-position: -5px -5px;
+  width: 377px;
+  height: 41px;
+}
+
+.icon-label {
+  background-position: -5px -56px;
+  width: 138px;
+  height: 138px;
+}
+
