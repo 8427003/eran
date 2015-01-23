@@ -35,7 +35,10 @@ var gulp = require('gulp'),
     fs = require('fs'),
     path = require('path'),
     livereload = require('gulp-livereload'),
+    cheerio = require('gulp-cheerio'),
+    htmlSrc = require('gulp-html-src'),
     config = require('./config.json');
+
 
 
 
