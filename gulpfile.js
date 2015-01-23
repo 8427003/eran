@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     inject = require('gulp-inject'),
     replace = require('gulp-replace'),
-    fileinclude = require('gulp-file-include'),
+    htmlInclude = require('gulp-html-tag-include'),
 
     //js
     browserify = require('gulp-browserify'),
@@ -34,8 +34,8 @@ var gulp = require('gulp'),
     merge = require('merge-stream'),
     fs = require('fs'),
     path = require('path'),
-    livereload = require('gulp-livereload');
-
+    livereload = require('gulp-livereload'),
+    config = require('./config.json');
 
 
 
@@ -97,10 +97,7 @@ gulp.task('clean-dev', function() {
 
 gulp.task('html-dev',['clean-dev'],function() {
     return gulp.src(['./src/html/index.html'])
-        .pipe(fileinclude({
-            prefix: '@@',
-            basepath: '@file'
-        }))
+        .pipe(htmlInclude())
         .pipe(htmlbeautify())
         .pipe(gulp.dest(DEV_DEST_PATH));
 });
@@ -260,179 +257,3 @@ gulp.task('image-publish', ['clean-publish','dev'],function() {
 
 /////////////////////////////// publish end //////////////////////////////
 /////////////////////////////////////////////////////////////////////////
-
-
-
-
-////////////////////////////////////////plugins demo//////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-/**
-gulp.task('include-after', function() {
-    return gulp
-        .src(['./dist/index.html'])
-        .pipe(rename("index.min.html"))
-        .pipe(fileinclude({
-            prefix: '##',
-            basepath: '@file'
-        }))
-        .pipe(template(getTemplateData()))
-        .pipe(gulp.dest('./dist'));
-});
-gulp.task('merge', function() {
-    merge(
-        runJsTask(),
-        runCssTask()
-    ).on('end', function() {
-        //gulp.run('fileinclude-after');
-    });
-
-
-});
-**/
-/**
-gulp.task('clean', function(cb) {
-    del(['./dist/index.min.html'], cb);
-})
-**/
-/**
-
-gulp.task('compress', function() {
-  gulp.src('lib/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('dist'))
-});
- **/
-/**
-var concat = require('gulp-concat');
-gulp.task('concat', function() {
-    gulp.src('./src/module/*.js')
-        .pipe(concat('all.js'))
-        .pipe(gulp.dest('./dist/'))
-});
-**/
-
-/**
-gulp.task('minify-css', function() {
-    gulp.src('./src/css/index.css')
-        .pipe(minifyCSS({
-            keepBreaks: true
-        }))
-        .pipe(gulp.dest('./dist'))
-});
-**/
-
-/**
-// run a command in a shell
-var exec = require('child_process').exec;
-gulp.task('jekyll', function(cb) {
-    // build Jekyll
-    exec('ls -a', function(err, stdout, stderr) {
-        if (err) return cb(err); // return error
-        console.log(stdout);
-        cb(); // finished task
-    });
-});
-**/
-
-
-
-/**
-gulp.task('autoprefixer', function () {
-    return gulp.src('src/index.css')
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-        }))
-        .pipe(gulp.dest('./dist'));
-});
-**/
-////////////////////////////////////////plugins demo end////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////// publish end //////////////////////////////
-/////////////////////////////////////////////////////////////////////////
-
-
-
-
-////////////////////////////////////////plugins demo//////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-/**
-gulp.task('include-after', function() {
-    return gulp
-        .src(['./dist/index.html'])
-        .pipe(rename("index.min.html"))
-        .pipe(fileinclude({
-            prefix: '##',
-            basepath: '@file'
-        }))
-        .pipe(template(getTemplateData()))
-        .pipe(gulp.dest('./dist'));
-});
-gulp.task('merge', function() {
-    merge(
-        runJsTask(),
-        runCssTask()
-    ).on('end', function() {
-        //gulp.run('fileinclude-after');
-    });
-
-
-});
-**/
-/**
-gulp.task('clean', function(cb) {
-    del(['./dist/index.min.html'], cb);
-})
-**/
-/**
-
-gulp.task('compress', function() {
-  gulp.src('lib/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('dist'))
-});
- **/
-/**
-var concat = require('gulp-concat');
-gulp.task('concat', function() {
-    gulp.src('./src/module/*.js')
-        .pipe(concat('all.js'))
-        .pipe(gulp.dest('./dist/'))
-});
-**/
-
-/**
-gulp.task('minify-css', function() {
-    gulp.src('./src/css/index.css')
-        .pipe(minifyCSS({
-            keepBreaks: true
-        }))
-        .pipe(gulp.dest('./dist'))
-});
-**/
-
-/**
-// run a command in a shell
-var exec = require('child_process').exec;
-gulp.task('jekyll', function(cb) {
-    // build Jekyll
-    exec('ls -a', function(err, stdout, stderr) {
-        if (err) return cb(err); // return error
-        console.log(stdout);
-        cb(); // finished task
-    });
-});
-**/
-
-
-
-/**
-gulp.task('autoprefixer', function () {
-    return gulp.src('src/index.css')
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-        }))
-        .pipe(gulp.dest('./dist'));
-});
-**/
-////////////////////////////////////////plugins demo end////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////
