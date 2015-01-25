@@ -22,6 +22,7 @@
     return s
 })({
     1: [function (require, module, exports) {
+
         if (window.attachEvent) {
             window.attachEvent("onload", main);
         } else if (window.addEventListener) {
