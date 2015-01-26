@@ -11,10 +11,10 @@ var gulp = require('gulp'),
     browserify = require('gulp-browserify'),
     jsbeautify = require('gulp-beautify'),
     uglify = require('gulp-uglify'),
-    sourcemaps = require('gulp-sourcemaps'),
-    jshint = require('gulp-jshint'),
-    stylish = require('jshint-stylish'),
-    notify = require('gulp-notify'),
+    //sourcemaps = require('gulp-sourcemaps'),
+    //jshint = require('gulp-jshint'),
+    //stylish = require('jshint-stylish'),
+    //notify = require('gulp-notify'),
 
     //css
     autoprefixer = require('gulp-autoprefixer'),
@@ -32,14 +32,14 @@ var gulp = require('gulp'),
     rename = require("gulp-rename"),
     del = require('del'),
     merge = require('merge-stream'),
-    fs = require('fs'),
-    path = require('path'),
+    //fs = require('fs'),
+    //path = require('path'),
     livereload = require('gulp-livereload'),
-    cheerio = require('gulp-cheerio'),
-    htmlSrc = require('gulp-html-src'),
-    vinylPaths = require('vinyl-paths'),
-    rte = require('gulp-rte'),
-    filter = require('gulp-filter'),
+    //cheerio = require('gulp-cheerio'),
+    //htmlSrc = require('gulp-html-src'),
+    //vinylPaths = require('vinyl-paths'),
+    //rte = require('gulp-rte'),
+    //filter = require('gulp-filter'),
 
     config = require('./config.json');
 
@@ -60,10 +60,10 @@ var Util = {
             return result;
         }
     },
-    getPathFormObj: function(classDirs){
+    getPathFormObj: function(classDirs) {
         var result = [];
-        for(var className in classDirs){
-           result.push(classDirs[className]+'/'+className+'.css')
+        for (var className in classDirs) {
+            result.push(classDirs[className] + '/' + className + '.css')
         }
         return result;
     }
@@ -74,7 +74,7 @@ var SOURCE_HTML = ['/html/index.html', '/html/index2.html', '/html/hehe/hehe.htm
 var SOURCE_JS = ['/js/index.js', '/js/hehe/index.js'];
 var SOURCE_CSS = ['/css/index.*css', '/css/hehe/index.*css'];
 var SOURCE_IMG = {
-    '/css/index.*css': {
+    '/css/hehe/index.*css': {
         "icon-1": "/images",
         "icon-2": "/images/a"
     }
@@ -87,15 +87,9 @@ var IS_JS_OUT_LINK = false;
 ///////////////////////////////////////////////////////////////////////////////////////////////////    
 var DEV_DEST_PATH = 'dist/dev'; //开发模式下生成的目标文件目录
 var PUBLISH_DEST_PATH = 'dist/publish'; //发布模式下生成的目标文件目录
-
-//var DEFAULT_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'html-dev', 'watch'];
 var DEFAULT_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'image-dev', 'html-dev', 'watch'];
 var DEV_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'html-dev']; //与default一样，少了一个watch
-
-//var DEV_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'html-dev']; //与default一样，少了一个watch
-//var PUBLISH_TASKS = ['dev', 'js-publish', 'css-publish', 'image-publish', 'html-publish'];
-
-var PUBLISH_TASKS = ['dev', 'js-publish', 'css-publish', 'html-publish'];
+var PUBLISH_TASKS = ['dev', 'js-publish', 'css-publish', 'html-publish','image-publish'];
 
 
 //default is also named dev 
@@ -139,7 +133,6 @@ gulp.task('clean-dev', function() {
 
 gulp.task('html-dev', ['clean-dev'], function() {
     var paths = Util.getPaths('src', SOURCE_HTML);
-
     gulp.src(paths, {
             base: 'src'
         })
@@ -159,27 +152,6 @@ gulp.task('js-dev', ['clean-dev'], function() {
         .pipe(jsbeautify({
             indentSize: 4
         }))
-        /**
-          .pipe(jshint({
-             asi: true
-        })) //不检测分号
-            .pipe(jshint.reporter(stylish))
-            // Use gulp-notify as jshint reporter
-            .pipe(notify(function(file) {
-                if (file.jshint.success) {
-                    // Don't show something if success
-                    return false;
-                }
-                var errors = file.jshint.results.map(function(data) {
-                    if (data.error) {
-                        return " (" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
-                    }
-                }).join("\
-                                    n ");
-                return file.relative + " (" + file.jshint.results.length + "
-                                        errors)\ n " + errors;
-            }))
-           **/
         .pipe(gulp.dest(DEV_DEST_PATH));
 });
 
@@ -188,21 +160,23 @@ gulp.task('css-dev', ['clean-dev', 'image-dev'], function() {
     var cssPath;
     var sprites;
     var paths;
+    var preSprites;
     for (var i = 0; i < SOURCE_CSS.length; i++) {
+
+        paths = [];
+        preSprites = [];
+
         cssPath = SOURCE_CSS[i];
         sprites = SOURCE_IMG[cssPath];
 
-        paths = [];
-        paths.push(cssPath);
-        paths.concat(Util.getPathFormObj(sprites) || []);
-        paths = Util.getPaths('src', paths);
-        console.log(paths);
+        paths.push('src' + cssPath);
+        preSprites = Util.getPaths(DEV_DEST_PATH, Util.getPathFormObj(sprites));
+        paths = paths.concat(preSprites);
+
         streams.push(
-            gulp.src(paths, {
-                base: 'src'
-            })
+            gulp.src(paths)
             .pipe(concat({
-                path: 'src'+cssPath,
+                path: 'src' + cssPath,
                 base: 'src'
             }))
             .pipe(sass())
@@ -213,7 +187,7 @@ gulp.task('css-dev', ['clean-dev', 'image-dev'], function() {
             .pipe(gulp.dest(DEV_DEST_PATH))
         );
     }
-    return streams;
+    return merge(streams);
 });
 
 gulp.task('image-dev', ['clean-dev'], function() {
@@ -240,6 +214,13 @@ gulp.task('image-dev', ['clean-dev'], function() {
             )
         }
     }
+
+    streams.push(
+        gulp.src(['src/**/*.jpg','src/**/*.gif'], {
+            base: 'src'
+        })
+        .pipe(gulp.dest(DEV_DEST_PATH))
+    );
     return merge(streams);
 });
 /////////////////////////////// dev end /////////////////////////////////
@@ -254,7 +235,6 @@ gulp.task('clean-publish', function() {
 });
 gulp.task('html-publish', ['clean-publish', 'dev', 'css-publish', 'js-publish'], function() {
     var paths = Util.getPaths(DEV_DEST_PATH, SOURCE_HTML)
-
     var target = gulp.src(paths, {
             base: DEV_DEST_PATH
         })
@@ -262,8 +242,61 @@ gulp.task('html-publish', ['clean-publish', 'dev', 'css-publish', 'js-publish'],
         .pipe(replace(/images\//g, IMG_BASE_PATH))
         .pipe(htmlbeautify())
     return target.pipe(gulp.dest(PUBLISH_DEST_PATH));
-    //   .pipe(rename('index.min.html'));
-    /**
+
+});
+
+gulp.task('css-publish', ['clean-publish', 'dev'], function() {
+    var paths = Util.getPaths(DEV_DEST_PATH, SOURCE_CSS)
+
+    //console.log(paths);
+    return gulp.src(paths, {
+            base: DEV_DEST_PATH
+        })
+        .pipe(minifyCSS({
+            compatibility: 'ie7'
+        }))
+        .pipe(replace(/\.\/images\//g, IMG_BASE_PATH))
+        .pipe(replace(/images\//g, IMG_BASE_PATH))
+        .pipe(gulp.dest(PUBLISH_DEST_PATH));
+});
+gulp.task('js-publish', ['clean-publish', 'dev'], function() {
+    var paths = Util.getPaths(DEV_DEST_PATH, SOURCE_JS)
+
+    return gulp.src(paths, {
+            base: DEV_DEST_PATH
+        })
+        .pipe(uglify())
+        .pipe(gulp.dest(PUBLISH_DEST_PATH));
+});
+
+gulp.task('image-publish', ['clean-publish', 'dev'], function() {
+    return gulp.src([DEV_DEST_PATH + '/**/*.jpg', DEV_DEST_PATH + '/**/*.png', DEV_DEST_PATH + '/**/*.gif'], {
+            base: DEV_DEST_PATH
+        })
+        .pipe(gulp.dest(PUBLISH_DEST_PATH));
+});
+
+/////////////////////////////// publish end //////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////demo////////////////////////////////////
+
+/**sourcemaps start**/
+/**
+        .pipe(sourcemaps.init())
+        .pipe(concat({path:})) //当uglify作为第一个插件时，会不能正常产生maps，so fall back，让勉强加了一个concat在前面, 解决见https://github.com/floridoo/gulp-sourcemaps/issues/37#issuecomment-60062922
+        .pipe(uglify())
+        .pipe(sourcemaps.write('./', {
+           debug: true
+        }))
+        //output
+        .pipe(gulp.dest(PUBLISH_DEST_PATH));
+**/
+/**sourcemaps end**/
+/////////////////////inject
+/**
         if (!IS_CSS_OUT_LINK) {
             target.pipe(inject(gulp.src([PUBLISH_DEST_PATH + '/index.min.css']), {
                 starttag: '<!-- inject:css -->',
@@ -288,47 +321,4 @@ gulp.task('html-publish', ['clean-publish', 'dev', 'css-publish', 'js-publish'],
         }
 
         return target.pipe(gulp.dest(PUBLISH_DEST_PATH));
-       **/
-});
-
-gulp.task('css-publish', ['clean-publish', 'dev'], function() {
-    var paths = Util.getPaths(DEV_DEST_PATH, SOURCE_CSS)
-
-    return gulp.src(paths, {
-            base: DEV_DEST_PATH
-        })
-        .pipe(minifyCSS({
-            compatibility: 'ie7'
-        }))
-        .pipe(replace(/\.\/images\//g, IMG_BASE_PATH))
-        .pipe(replace(/images\//g, IMG_BASE_PATH))
-
-    //output
-    .pipe(gulp.dest(PUBLISH_DEST_PATH));
-});
-gulp.task('js-publish', ['clean-publish', 'dev'], function() {
-    var paths = Util.getPaths(DEV_DEST_PATH, SOURCE_JS)
-
-    return gulp.src(paths, {
-            base: DEV_DEST_PATH
-        })
-        //.pipe(sourcemaps.init())
-        //.pipe(concat('index.min.js')) //当uglify作为第一个插件时，会不能正常产生maps，so fall back，让勉强加了一个concat在前面, 解决见https://github.com/floridoo/gulp-sourcemaps/issues/37#issuecomment-60062922
-        .pipe(uglify())
-        /**
-        .pipe(sourcemaps.write('./', {
-            debug: true
-        }))
-       **/
-        //output
-        .pipe(gulp.dest(PUBLISH_DEST_PATH));
-});
-/**
-gulp.task('image-publish', ['clean-publish', 'dev'], function() {
-    return gulp.src([DEV_DEST_PATH + '/images/*.jpg', DEV_DEST_PATH + '/images/*.png'])
-        .pipe(gulp.dest(PUBLISH_DEST_PATH + '/images'));
-});
-**/
-
-/////////////////////////////// publish end //////////////////////////////
-/////////////////////////////////////////////////////////////////////////
+ **/
