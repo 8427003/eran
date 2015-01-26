@@ -35,11 +35,16 @@
     width: 132px;
     height: 132px;
 }
+
+.m-access .bottom-wrap {} .m-access .bottom-wrap .txt-bg p{
+    font:16px/24px "Microsoft Yahei";
+    color:#fff;
+    text-align:center;
+}
 .m-access .bottom-wrap {} .m-access .bottom-wrap .txt-bg {
-    width: 115px;
     height: 44px;
     margin: 13px auto 11px;
-    background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -846px;
+   // background: url(http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/20141212/sprite-1.png) no-repeat 0 -846px;
 }
 .m-access .bottom-wrap .btn-wrap a {
     display: block;
