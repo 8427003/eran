@@ -1,28 +1,45 @@
 .m-instruction {
-    height:443px;
-    background:url(./images/instruction-bg.jpg) no-repeat center center;
+    width: 100%;
+    background:url(./images/instruction-bg-2.jpg) no-repeat center bottom;
 } 
+.m-instruction .title-wrap{
+    margin:0 auto;
+    height: 63px;
+    padding-top: 20px;
+    width: 980px;
+    background: url(./images/instruction-title.jpg) no-repeat;
+}
+.m-instruction h1 {
+    float: left;
+    _display: inline;
+    font: 24px / 36px"Microsoft Yahei";
+    color: #ec4b26;
+    text-align: center;
+    width: 490px;
+}
 .m-instruction .main {
     width: 980px;
-    height:372px;
     overflow:hidden;
     margin: 0 auto;
+    background: url(./images/item-bg.jpg) repeat-y;
+    position: relative;
 }
 .m-instruction .prize{
     width:490px;
     height:100%;
 }
-.m-instruction h1 {
-    padding-top:20px;
-    font: 24px / 36px"Microsoft Yahei";
-    color: #ec4b26;
-    text-align: center;
-}
-.m-instruction .content{
-    margin-top:30px;
+.m-instruction .ying {
+    position: absolute;
+    width:193px;
+    height: 138px;
+    bottom:0;
+    right:0;
+    background: url(./images/ying.png) no-repeat;
+    _background:none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./images/ying.png', sizingMethod='crop');
 }
 .m-instruction p {
-    font: 14px / 47px"Microsoft Yahei";
+    font: 14px / 48px"Microsoft Yahei";
     padding:0 15px 0 20px;
     color: #bc813c;
 }
