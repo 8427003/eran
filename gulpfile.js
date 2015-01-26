@@ -39,20 +39,32 @@ var gulp = require('gulp'),
     htmlSrc = require('gulp-html-src'),
     vinylPaths = require('vinyl-paths'),
     rte = require('gulp-rte'),
+    filter = require('gulp-filter'),
+
     config = require('./config.json');
 
 
 
 var Util = {
-    getPaths: function(prefix, sourcePaths) {
+    getPaths: function(prefix, sourcePath, after) {
         var prefix = prefix || '';
-        var sourcePaths = sourcePaths || [];
+        var after = after || '';
 
-        var result = [];
-        for (var i = 0; i < sourcePaths.length; i++) {
-            result.push(prefix + sourcePaths[i]);
+        if (typeof sourcePath === 'string') {
+            return prefix + sourcePath + after;
+        } else {
+            var result = [];
+            for (var i = 0; i < sourcePath.length; i++) {
+                result.push(prefix + sourcePath[i] + after);
+            }
+            return result;
         }
-
+    },
+    getPathFormObj: function(classDirs){
+        var result = [];
+        for(var className in classDirs){
+           result.push(classDirs[className]+'/'+className+'.css')
+        }
         return result;
     }
 }
@@ -61,10 +73,12 @@ var IMG_BASE_PATH = 'http://source.qunar.com/mobile_platform/mobile_douxing/qtua
 var SOURCE_HTML = ['/html/index.html', '/html/index2.html', '/html/hehe/hehe.html'];
 var SOURCE_JS = ['/js/index.js', '/js/hehe/index.js'];
 var SOURCE_CSS = ['/css/index.*css', '/css/hehe/index.*css'];
-var SOURCE_IMG = [{
-    targetCss: SOURCE_CSS[0],
-    sourceCss: ['/images']
-}];
+var SOURCE_IMG = {
+    '/css/index.*css': {
+        "icon-1": "/images",
+        "icon-2": "/images/a"
+    }
+};
 var IS_CSS_OUT_LINK = false;
 var IS_JS_OUT_LINK = false;
 
@@ -74,11 +88,11 @@ var IS_JS_OUT_LINK = false;
 var DEV_DEST_PATH = 'dist/dev'; //开发模式下生成的目标文件目录
 var PUBLISH_DEST_PATH = 'dist/publish'; //发布模式下生成的目标文件目录
 
-var DEFAULT_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'html-dev', 'watch'];
-//var DEFAULT_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'image-dev', 'html-dev', 'watch'];
-//var DEV_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'html-dev']; //与default一样，少了一个watch
-
+//var DEFAULT_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'html-dev', 'watch'];
+var DEFAULT_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'image-dev', 'html-dev', 'watch'];
 var DEV_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'html-dev']; //与default一样，少了一个watch
+
+//var DEV_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'html-dev']; //与default一样，少了一个watch
 //var PUBLISH_TASKS = ['dev', 'js-publish', 'css-publish', 'image-publish', 'html-publish'];
 
 var PUBLISH_TASKS = ['dev', 'js-publish', 'css-publish', 'html-publish'];
@@ -158,110 +172,75 @@ gulp.task('js-dev', ['clean-dev'], function() {
                 }
                 var errors = file.jshint.results.map(function(data) {
                     if (data.error) {
-                        return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+                        return " (" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
                     }
-                }).join("\n");
-                return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
+                }).join("\
+                                    n ");
+                return file.relative + " (" + file.jshint.results.length + "
+                                        errors)\ n " + errors;
             }))
            **/
         .pipe(gulp.dest(DEV_DEST_PATH));
 });
 
-//gulp.task('css-dev', ['clean-dev', 'image-dev'], function() {
-//
-gulp.task('css-dev', ['clean-dev'], function() {
-    var paths = Util.getPaths('src', SOURCE_CSS);
+gulp.task('css-dev', ['clean-dev', 'image-dev'], function() {
+    var streams = [];
+    var cssPath;
+    var sprites;
+    var paths;
+    for (var i = 0; i < SOURCE_CSS.length; i++) {
+        cssPath = SOURCE_CSS[i];
+        sprites = SOURCE_IMG[cssPath];
 
-    return gulp.src(paths, {
-            base: 'src'
-        })
-        //return gulp.src([SOURCE_CSS],{base:'src'})
-        /**
-        .pipe(concat({
-            path: 'src'+SOURCE_CSS,
-            base: 'src'
-        }))
-        **/
-        .pipe(sass())
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions']
-        }))
-        .pipe(cssbeautify())
-        .pipe(gulp.dest(DEV_DEST_PATH))
+        paths = [];
+        paths.push(cssPath);
+        paths.concat(Util.getPathFormObj(sprites) || []);
+        paths = Util.getPaths('src', paths);
+        console.log(paths);
+        streams.push(
+            gulp.src(paths, {
+                base: 'src'
+            })
+            .pipe(concat({
+                path: 'src'+cssPath,
+                base: 'src'
+            }))
+            .pipe(sass())
+            .pipe(autoprefixer({
+                browsers: ['last 2 versions']
+            }))
+            .pipe(cssbeautify())
+            .pipe(gulp.dest(DEV_DEST_PATH))
+        );
+    }
+    return streams;
 });
 
 gulp.task('image-dev', ['clean-dev'], function() {
-    var sourceDir = 'src' + SOURCE_IMG,
-        streams = [],
-        pathName,
-        folder,
-        folders;
-    /**
-        gulp.src(SOURCE_IMG, {
-            base: 'src'
-        })
-        .pipe(sprite({
-            name: 'sprite',
-            style: 'sprite.css',
-            cssPath: '/images',
-            prefix: folder,
-            processor: 'css'
-        }))
-        .pipe(gulp.dest(DEV_DEST_PATH + '/images'))
-       */
-    var spriteObj;
-    for (var i = 0; i < SOURCE_IMG.length; i++) {
-        spriteObj = SOURCE_IMG[i];
-        
-        gulp.src(spriteObj.sourceCss, {
-                base: 'src'
-            })
-            .pipe(sprite({
-                name: 'sprite',
-                style: 'sprite.css',
-                cssPath: '/images',
-                prefix: folder,
-                processor: 'css'
-            }))
-            .pipe(gulp.dest(DEV_DEST_PATH + '/images'))
+    var streams = [];
+    var classDirs;
+    var path;
+    for (var css in SOURCE_IMG) {
+
+        classDirs = SOURCE_IMG[css];
+        for (var className in classDirs) {
+            path = Util.getPaths('src', classDirs[className], '/*.png');
+            streams.push(
+                gulp.src(path, {
+                    base: 'src'
+                })
+                .pipe(sprite({
+                    name: className,
+                    style: className + '.css',
+                    cssPath: '/images',
+                    prefix: className,
+                    processor: 'css'
+                }))
+                .pipe(gulp.dest(DEV_DEST_PATH + classDirs[className]))
+            )
+        }
     }
-    /**
-        folders = fs.readdirSync(sourceDir);
-
-        folders.forEach(function(file) {
-            pathName = path.join(sourceDir, file);
-
-            if (fs.statSync(pathName).isDirectory()) {
-                folder = file;
-                streams.push(
-                    gulp.src(pathName + '/*.png',{base:'src'})
-                    .pipe(sprite({
-                        name: 'sprite-' + folder,
-                        style: 'sprite-' + folder + '.css',
-                        cssPath: '/images',
-                        prefix: folder,
-                        processor: 'css'
-                    }))
-                    .pipe(gulp.dest(DEV_DEST_PATH + '/images'))
-                );
-            }
-        });
-
-        streams.push(gulp.src(sourceDir + '/*.png',{base:'src'})
-            .pipe(sprite({
-                name: 'sprite-icon',
-                style: 'sprite-icon.css',
-                cssPath: '/images',
-                prefix: 'icon',
-                processor: 'css'
-            }))
-            .pipe(gulp.dest(DEV_DEST_PATH + '/images'))
-        );
-        streams.push(gulp.src(sourceDir + '/*.jpg',{base:'src'})
-            .pipe(gulp.dest(DEV_DEST_PATH))
-        );
-        return merge(streams);
-       **/
+    return merge(streams);
 });
 /////////////////////////////// dev end /////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
