@@ -1,9 +1,14 @@
+@import './lib/qunar-reset.scss';
+
+@import './module/m-access.scss';
+
+@import './module/m-tab-nav.scss';
+
+@import './module/m-tab-list.scss';
+
 body{
-    background-color:red;
+    background:#02073b; 
 }
-
-
-
 
 
 

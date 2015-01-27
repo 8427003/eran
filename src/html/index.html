@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,20 +12,22 @@
 <body>
     <!--modules-->
     <!-- inject:css -->
-    <link href="index.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
     <!-- endinject -->
 
-    <div class='m-choujiang'>
-        <!--公共登录框-->
-        <div id="QunarPopBox"></div>
-        <!--/公共登录框-->
-        <include>./module/m-banner.html</include>
-        <include>./module/m-access.html</include>
-
+    <div class='m-aomen js-tab-module' data-show-title="false">
+        <div style="height:900px;width:100%;"></div>
+        <include>module/m-access.html</include>
+        <include>module/m-tab-nav.html</include>
+        <include>module/m-tab-list.html</include>
+        <include>module/m-tab-nav.html</include>
+        <include>module/m-tab-list.html</include>
     </div>
     <!--/modules-->
     <!-- inject:js -->
-    <script src="src/js/index.js"></script>
+    <script src="../js/index.js"></script>
     <!-- endinject -->
+    <script src="http://qunarzz.com/jquery/prd/jquery-1.7.2.js"></script>
 </body>
+
 </html>

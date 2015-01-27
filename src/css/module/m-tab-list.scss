@@ -1,0 +1,109 @@
+.m-tab-list {
+    /**blank**/
+}
+.m-tab-list.pt18 {
+    padding-top:18px;
+}
+.m-tab-list .main {
+    width: 980px;
+    margin:0 auto;
+    overflow: hidden;
+}
+.m-tab-list .tab-list {
+    width: 100%;
+    overflow: hidden;
+}
+.m-tab-list .tab-item {
+    width:993px;
+}
+.m-tab-list .list {
+    width: 100%;
+    overflow: hidden;
+}
+.m-tab-list .item {
+    float: left;
+    _display: inline;
+    width: 318px;
+    height: 346px;
+    overflow:hidden;
+    margin-bottom:18px;
+    margin-right:13px;
+}
+.m-tab-list .inner-wrap {
+    width:316px;
+    height: 344px;
+    border:1px solid #fff;
+    display:block;
+    position: relative;
+}
+.m-tab-list .inner-wrap:hover {
+    border:1px solid red;
+}
+.m-tab-list .inner-wrap img {
+    width: 100%;
+    height: 208px;
+    display: block;
+}
+.m-tab-list .txt-wrap {
+    background: #fff;
+    height: 123px;
+    padding:13px 15px 0;
+}
+.m-tab-list .txt-wrap .tt {
+    font: 19px / 21px"Microsoft Yahei";
+    color: #333;
+    width:100%;
+    height:21px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.m-tab-list .txt-wrap .tt.indent {
+    text-indent:-0.5em;
+}
+.m-tab-list .txt-wrap .desc {
+    margin-top: 10px;
+    font: 14px / 16px"Microsoft Yahei";
+    color: #999;
+    width:100%;
+    height:16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.m-tab-list .txt-wrap .btn-wrap {
+    background: #fd6d0c;
+    width: 281px;
+    margin: 15px auto 0;
+    height: 46px;
+    border-radius:2px;
+    box-shadow:0 2px #a73209;
+
+}
+.m-tab-list .btn-wrap .price {
+    float: left;
+    _display: inline;
+    font: bold 30px/32px"Tahoma";
+    height: 32px;
+    margin-left: 27px;
+    padding-top: 6px;
+    color: #fff;
+}
+.m-tab-list .btn-wrap .u {
+    float: left;
+    _display: inline;
+    font: 18px/20px"simhei";
+    height: 20px;
+    padding-top: 15px;
+    margin-left: 5px;
+    color: #fff;
+}
+.m-tab-list .btn-wrap .now-buy {
+    float: right;
+    _display: inline;
+    font: 18px/20px"simhei";
+    height: 20px;
+    padding-top: 16px;
+    margin-right: 16px;
+    color: #fff;
+}
