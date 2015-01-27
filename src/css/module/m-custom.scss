@@ -1,0 +1,56 @@
+/**tab 导航配置 start**/
+
+.m-tab-nav .tab-nav .more a,
+.m-tab-nav .tab-nav .item a {
+    background: #fed783;
+    /**tab导航默认背景颜色**/
+    color: #02073b;
+    /**tab导航默认字体颜色**/
+}
+
+.m-tab-nav .tab-nav .item.cur a,
+.m-tab-nav .tab-nav .more.cur a,
+.m-tab-nav .tab-nav .item a:hover,
+.m-tab-nav .tab-nav .more:hover,
+{
+    background: #fd6d0c;
+    /**tab导航hover状态、选中状态背景颜色**/
+    color: #fff;
+    /**tab导航hover状态、选中状态字体颜色**/
+}
+
+
+.m-tab-nav .tab-nav .item {
+    background: #5c0f71;
+    /**tab导航 间隙颜色**/
+}
+/**tab 导航配置 end**/
+
+
+
+
+
+
+
+/**全局背景颜色 start**/
+.m-aomen,
+.Qt_wrap {
+    background: #02073b;
+}
+/**全局背景颜色 end**/
+
+
+
+
+/**右侧快速定位 start**/
+.Qt_acess .menu li .item {
+    color: #63a9e6;/**右侧快速定位默认栏目列表字体默认颜色**/
+}
+.Qt_acess .menu li .item:hover,
+.Qt_acess .menu li.cur .item {
+    color: #fc5455;/**右侧快速定位默认栏目列表字体hover状态颜色**/
+}
+.Qt_acess .menu .txt-desc {
+    color: #999;/**二维码下方描述文字颜色**/
+}
+/**右侧快速定位 start**/
