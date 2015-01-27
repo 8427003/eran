@@ -70,13 +70,12 @@ var Util = {
 }
 
 var IMG_BASE_PATH = 'http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150121/';
-var SOURCE_HTML = ['/html/index.html', '/html/index2.html', '/html/hehe/hehe.html'];
-var SOURCE_JS = ['/js/index.js', '/js/hehe/index.js'];
-var SOURCE_CSS = ['/css/index.*css', '/css/hehe/index.*css'];
+var SOURCE_HTML = ['/html/index.html'];
+var SOURCE_JS = ['/js/index.js'];
+var SOURCE_CSS = ['/css/index.*css'];
 var SOURCE_IMG = {
-    '/css/hehe/index.*css': {
-        "icon-1": "/images",
-        "icon-2": "/images/a"
+    '/css/index.*css': {
+        "icon-1": "/images/icon-1"
     }
 };
 var IS_CSS_OUT_LINK = false;
