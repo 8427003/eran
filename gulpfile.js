@@ -33,7 +33,7 @@ var gulp = require('gulp'),
     del = require('del'),
     merge = require('merge-stream'),
     //fs = require('fs'),
-    //path = require('path'),
+    path = require('path'),
     livereload = require('gulp-livereload'),
     //cheerio = require('gulp-cheerio'),
     //htmlSrc = require('gulp-html-src'),
@@ -68,7 +68,9 @@ var Util = {
         return result;
     }
 }
-
+var css_path_1 = /url\(["']?(?!http:\/\/).*?([\w-]+\.\w+)["']?\)/ig;
+var css_path_2 = /src=["'](?!http:\/\/).*?([\w-]+\.\w+)["']/ig;
+var CSS_PATH_REG = [css_path_1,css_path_2];
 var IMG_BASE_PATH = 'http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150121/';
 var SOURCE_HTML = ['/html/index.html'];
 var SOURCE_JS = ['/js/index.js'];
@@ -192,20 +194,22 @@ gulp.task('css-dev', ['clean-dev', 'image-dev'], function() {
 gulp.task('image-dev', ['clean-dev'], function() {
     var streams = [];
     var classDirs;
-    var path;
+    var sourcePath;
+    var cssDir;
+    var targetCssDir;
     for (var css in SOURCE_IMG) {
-
+        targetCssDir = path.dirname(Util.getPaths('src',css));
         classDirs = SOURCE_IMG[css];
         for (var className in classDirs) {
-            path = Util.getPaths('src', classDirs[className], '/*.png');
+            sourcePath = Util.getPaths('src', classDirs[className], '/*.png');
+            cssDir = Util.getPaths('src',classDirs[className]);
+            cssDir = path.relative(targetCssDir,cssDir);
             streams.push(
-                gulp.src(path, {
-                    base: 'src'
-                })
+                gulp.src(sourcePath)
                 .pipe(sprite({
                     name: className,
                     style: className + '.css',
-                    cssPath: '/images',
+                    cssPath: cssDir,
                     prefix: className,
                     processor: 'css'
                 }))
@@ -237,8 +241,8 @@ gulp.task('html-publish', ['clean-publish', 'dev', 'css-publish', 'js-publish'],
     var target = gulp.src(paths, {
             base: DEV_DEST_PATH
         })
-        .pipe(replace(/\.\/images\//g, IMG_BASE_PATH))
-        .pipe(replace(/images\//g, IMG_BASE_PATH))
+       // .pipe(replace(/\.\/images\//g, IMG_BASE_PATH))
+       // .pipe(replace(/images\//g, IMG_BASE_PATH))
         .pipe(htmlbeautify())
     return target.pipe(gulp.dest(PUBLISH_DEST_PATH));
 
@@ -247,15 +251,26 @@ gulp.task('html-publish', ['clean-publish', 'dev', 'css-publish', 'js-publish'],
 gulp.task('css-publish', ['clean-publish', 'dev'], function() {
     var paths = Util.getPaths(DEV_DEST_PATH, SOURCE_CSS)
 
-    //console.log(paths);
     return gulp.src(paths, {
             base: DEV_DEST_PATH
         })
         .pipe(minifyCSS({
             compatibility: 'ie7'
         }))
-        .pipe(replace(/\.\/images\//g, IMG_BASE_PATH))
-        .pipe(replace(/images\//g, IMG_BASE_PATH))
+        .pipe(replace(CSS_PATH_REG[0],function(){
+            if(arguments[1]){
+                return IMG_BASE_PATH+arguments[1];
+            }
+            console.log('css error!');
+            return;
+        }))
+        .pipe(replace(CSS_PATH_REG[1],function(){
+            if(arguments[1]){
+                return IMG_BASE_PATH+arguments[1];
+            }
+            console.log('css error!');
+            return;
+        }))
         .pipe(gulp.dest(PUBLISH_DEST_PATH));
 });
 gulp.task('js-publish', ['clean-publish', 'dev'], function() {
