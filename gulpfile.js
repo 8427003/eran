@@ -70,7 +70,12 @@ var Util = {
 }
 var css_path_1 = /url\(["']?(?!http:\/\/).*?([\w-]+\.\w+)["']?\)/ig;
 var css_path_2 = /src=["'](?!http:\/\/).*?([\w-]+\.\w+)["']/ig;
-var CSS_PATH_REG = [css_path_1,css_path_2];
+
+var html_path_1 = /(src)=["'](?!http:\/\/).*?([\w-]+\.(png|jpg|gif|jpeg))["']/ig;
+var html_path_2 = /(data-original)=["'](?!http:\/\/).*?([\w-]+\.(png|jpg|gif|jpeg))["']/ig;
+var HTML_PATH_REG = [html_path_1, html_path_2];
+
+
 var IMG_BASE_PATH = 'http://source.qunar.com/mobile_platform/mobile_douxing/qtuan/topic/yy/20150121/';
 var SOURCE_HTML = ['/html/index.html'];
 var SOURCE_JS = ['/js/index.js'];
@@ -90,7 +95,7 @@ var DEV_DEST_PATH = 'dist/dev'; //开发模式下生成的目标文件目录
 var PUBLISH_DEST_PATH = 'dist/publish'; //发布模式下生成的目标文件目录
 var DEFAULT_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'image-dev', 'html-dev', 'watch'];
 var DEV_TASKS = ['clean-dev', 'js-dev', 'css-dev', 'html-dev']; //与default一样，少了一个watch
-var PUBLISH_TASKS = ['dev', 'js-publish', 'css-publish', 'html-publish','image-publish'];
+var PUBLISH_TASKS = ['dev', 'js-publish', 'css-publish', 'html-publish', 'image-publish'];
 
 
 //default is also named dev 
@@ -198,12 +203,12 @@ gulp.task('image-dev', ['clean-dev'], function() {
     var cssDir;
     var targetCssDir;
     for (var css in SOURCE_IMG) {
-        targetCssDir = path.dirname(Util.getPaths('src',css));
+        targetCssDir = path.dirname(Util.getPaths('src', css));
         classDirs = SOURCE_IMG[css];
         for (var className in classDirs) {
             sourcePath = Util.getPaths('src', classDirs[className], '/*.png');
-            cssDir = Util.getPaths('src',classDirs[className]);
-            cssDir = path.relative(targetCssDir,cssDir);
+            cssDir = Util.getPaths('src', classDirs[className]);
+            cssDir = path.relative(targetCssDir, cssDir);
             streams.push(
                 gulp.src(sourcePath)
                 .pipe(sprite({
@@ -219,7 +224,7 @@ gulp.task('image-dev', ['clean-dev'], function() {
     }
 
     streams.push(
-        gulp.src(['src/**/*.jpg','src/**/*.gif'], {
+        gulp.src(['src/**/*.jpg', 'src/**/*.gif'], {
             base: 'src'
         })
         .pipe(gulp.dest(DEV_DEST_PATH))
@@ -239,11 +244,19 @@ gulp.task('clean-publish', function() {
 gulp.task('html-publish', ['clean-publish', 'dev', 'css-publish', 'js-publish'], function() {
     var paths = Util.getPaths(DEV_DEST_PATH, SOURCE_HTML)
     var target = gulp.src(paths, {
-            base: DEV_DEST_PATH
-        })
-       // .pipe(replace(/\.\/images\//g, IMG_BASE_PATH))
-       // .pipe(replace(/images\//g, IMG_BASE_PATH))
-        .pipe(htmlbeautify())
+        base: DEV_DEST_PATH
+    })
+    for (var i = 0; i < HTML_PATH_REG.length; i++) {
+        target.pipe(replace(HTML_PATH_REG[i], function() {
+            console.log(arguments[2])
+            if (arguments[2]) {
+                return arguments[1] + '="' + IMG_BASE_PATH + arguments[2] + '"';
+            }
+            console.log('css error!');
+            return;
+        }))
+    }
+    target.pipe(htmlbeautify())
     return target.pipe(gulp.dest(PUBLISH_DEST_PATH));
 
 });
@@ -254,19 +267,21 @@ gulp.task('css-publish', ['clean-publish', 'dev'], function() {
     return gulp.src(paths, {
             base: DEV_DEST_PATH
         })
+        /**
         .pipe(minifyCSS({
             compatibility: 'ie7'
         }))
-        .pipe(replace(CSS_PATH_REG[0],function(){
-            if(arguments[1]){
-                return IMG_BASE_PATH+arguments[1];
+       **/
+        .pipe(replace(css_path_1, function() {
+            if (arguments[1]) {
+                return 'url(' + IMG_BASE_PATH + arguments[1] + ')';
             }
             console.log('css error!');
             return;
         }))
-        .pipe(replace(CSS_PATH_REG[1],function(){
-            if(arguments[1]){
-                return IMG_BASE_PATH+arguments[1];
+        .pipe(replace(css_path_2, function() {
+            if (arguments[1]) {
+                return 'src=\'' + IMG_BASE_PATH + arguments[1] + '\'';
             }
             console.log('css error!');
             return;
