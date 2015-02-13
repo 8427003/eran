@@ -4,7 +4,7 @@
   "description": "my lib",
   "main": "eran.js",
   "scripts": {
-    "test": "echo \"test is ok!\" && exit 0"
+    "test": "gulp publish && echo \"test is ok!\" && exit 0"
   },
   "repository": {
     "type": "git",
